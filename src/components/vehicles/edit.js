@@ -146,7 +146,7 @@ function EditVehicle() {
               onSubmit={(e) => EditClick(e)}
               encType="multipart/form-data">
 <Grid container>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="number"
@@ -159,7 +159,7 @@ function EditVehicle() {
               </Grid>
               
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="name"
@@ -171,7 +171,7 @@ function EditVehicle() {
                 </TextField>
               </Grid>
 
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <FormControl
                   required
                   variant="standard" fullWidth>
@@ -192,7 +192,7 @@ function EditVehicle() {
                 </FormControl>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <FormControl
                   required
                   variant="standard" fullWidth>
@@ -212,7 +212,7 @@ function EditVehicle() {
                 </FormControl>
                 
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <TextField
                   className={classes.TextField}
                   fullWidth id="start_counter"
@@ -224,7 +224,7 @@ function EditVehicle() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <TextField
                   className={classes.TextField}
                   fullWidth id="end_counter"
@@ -234,7 +234,7 @@ function EditVehicle() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <TextField
                   className={classes.TextField}
                   fullWidth id="model"
@@ -246,7 +246,7 @@ function EditVehicle() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <TextField
                   className={classes.TextField}
                   fullWidth id="rent_cost"
@@ -258,7 +258,7 @@ function EditVehicle() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -277,7 +277,7 @@ function EditVehicle() {
               </Grid>
               <Grid item xs={1} />
 
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -294,7 +294,7 @@ function EditVehicle() {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
-              <Grid xs={5}/>
+              <Grid xs={12} sm={5}/>
               <Grid xs={1}>
                 <Button
                   type="submit"

@@ -78,7 +78,7 @@ function Login({ user_store, login }) {
   const classes = useStyles();
   const [showPassword, setShowPassword] = React.useState(false);
   const [FormState, setFormState] = useState({
-    user_name: "",
+    userName: "",
     password: "",
   });
   const [SnackbarState, setSnackbarState] = useState({
@@ -123,7 +123,7 @@ function Login({ user_store, login }) {
 
   return (
     <div>
-      {user_store.user.user_name !== undefined && !user_store.loading ? history.push(PREFIX_ROUTE) :
+      {user_store.user.userName !== undefined && !user_store.loading ? history.push(PREFIX_ROUTE) :
         <React.Fragment>
           <Snackbar open={SnackbarState.open && (user_store.loading || user_store.error)} anchorOrigin={{ vertical: SnackbarState.vertical, horizontal: SnackbarState.horizontal }} autoHideDuration={6000} >
             <Alert onClose={SnackbarClose} severity={user_store.error || SnackbarState.message ? "error" : "info"}>
@@ -140,9 +140,9 @@ function Login({ user_store, login }) {
                 encType="multipart/form-data">
                 <InputLabel>User name</InputLabel>
                 <Input
-                  id="user_name"
-                  value={FormState.user_name}
-                  name="user_name"
+                  id="userName"
+                  value={FormState.userName}
+                  name="userName"
                   required
                   onChange={(e) => handleChange(e)}
                 />

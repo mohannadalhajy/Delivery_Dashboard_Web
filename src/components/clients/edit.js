@@ -157,7 +157,7 @@ function EditClient() {
               />
               <Divider variant="middle" />
               <Grid container>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="company_name"
@@ -169,19 +169,19 @@ function EditClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
-                    fullWidth id="user_name"
-                    value={recordState.user_name}
-                    name="user_name"
+                    fullWidth id="userName"
+                    value={recordState.userName}
+                    name="userName"
                     required
-                    label="user_name"
+                    label="userName"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="password"
@@ -193,7 +193,7 @@ function EditClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="amount"
@@ -205,7 +205,7 @@ function EditClient() {
                   </TextField>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="points"
@@ -217,7 +217,7 @@ function EditClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="client_name"
@@ -228,7 +228,7 @@ function EditClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
@@ -247,7 +247,7 @@ function EditClient() {
                   </FormControl>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="city"
@@ -259,7 +259,7 @@ function EditClient() {
                   </TextField>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                 <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
                   <PhoneInput
                     className={classes.PhoneInput}
@@ -270,7 +270,7 @@ function EditClient() {
                     onChange={(e) => handleChangePhone(e, "client_phone")} />
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                 <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
                   <PhoneInput
                     className={classes.PhoneInput}
@@ -280,7 +280,7 @@ function EditClient() {
                     value={recordState.company_phone}
                     onChange={(e) => handleChangePhone(e, "company_phone")} />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="locationX"
@@ -292,7 +292,7 @@ function EditClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="locationY"
@@ -303,7 +303,7 @@ function EditClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="company_type"
@@ -315,7 +315,7 @@ function EditClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       className={classes.TextField}
@@ -333,7 +333,7 @@ function EditClient() {
                     />
                   </MuiPickersUtilsProvider>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       className={classes.TextField}
@@ -352,7 +352,7 @@ function EditClient() {
                   </MuiPickersUtilsProvider>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       className={classes.TextField}

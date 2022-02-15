@@ -135,7 +135,7 @@ function AddOrder() {
             encType="multipart/form-data">
 
             <Grid container>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
                   required
@@ -153,7 +153,7 @@ function AddOrder() {
                 </FormControl>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="amount"
@@ -164,7 +164,7 @@ function AddOrder() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="address"
@@ -176,7 +176,7 @@ function AddOrder() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="customer_name"
@@ -187,7 +187,7 @@ function AddOrder() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
               <InputLabel id="emirate-label"className={classes.PhoneInput}>Customer phone</InputLabel>
                 <PhoneInput
                   className={classes.PhoneInput}
@@ -200,7 +200,7 @@ function AddOrder() {
 
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
                   variant="standard" fullWidth>
@@ -216,7 +216,7 @@ function AddOrder() {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 {recordState.emirate && recordState.emirate !== ORDER_EMIRATES[2] ? <FormControl
                   className={classes.TextField}
                   variant="standard" fullWidth>
@@ -234,7 +234,7 @@ function AddOrder() {
                 </FormControl> : <React.Fragment />}
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 {recordState.type && recordState.type !== ORDER_TYPES[0] ? <FormControl
                   className={classes.TextField}
                   variant="standard" fullWidth>
@@ -253,7 +253,7 @@ function AddOrder() {
                   </Select>
                 </FormControl> : <React.Fragment />}
               </Grid>
-              <Grid xs={5}/>
+              <Grid xs={12} sm={5}/>
               <Grid xs={1}>
                 <Button
                   type="submit"

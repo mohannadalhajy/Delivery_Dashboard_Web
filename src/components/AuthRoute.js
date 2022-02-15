@@ -6,7 +6,7 @@ import BaseWaiting from "./Base/BaseWaiting";
 
 export default function AuthRoute({ path, component }) {
   const user = useSelector(state => state.User);
-  const isAuthenticated = user.user.user_name !== undefined
+  const isAuthenticated = user.user.userName !== undefined
   return (user.loading ?
     <BaseWaiting />
     : isAuthenticated ?

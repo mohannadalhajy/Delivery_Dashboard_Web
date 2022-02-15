@@ -140,7 +140,7 @@ function ReleaseVehicle() {
                 </FormControl>
               </Grid>
 
-              <Grid xs={5} />
+              <Grid xs={12} sm={5} />
               <Grid xs={1}>
                 <Button
                   type="submit"

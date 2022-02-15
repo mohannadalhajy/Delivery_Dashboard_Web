@@ -160,7 +160,7 @@ export default function NavMenu({ setCollapsed, collapsed }) {
               open={openProfile}
               onClose={handleCloseProfile}
             >
-              {user.user.user_name === undefined ?
+              {user.user.userName === undefined ?
                 <div>
                   <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={LOGIN_ROUTE}>
                     <MenuItem onClick={handleCloseProfile}>Login</MenuItem>

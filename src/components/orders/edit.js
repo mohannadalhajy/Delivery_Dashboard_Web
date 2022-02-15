@@ -167,7 +167,7 @@ function EditOrder() {
               encType="multipart/form-data">
 
               <Grid container>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
                     required
@@ -185,7 +185,7 @@ function EditOrder() {
                   </FormControl>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="amount"
@@ -197,7 +197,7 @@ function EditOrder() {
                   </TextField>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="address"
@@ -209,7 +209,7 @@ function EditOrder() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
                     required
@@ -226,7 +226,7 @@ function EditOrder() {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="customer_name"
@@ -239,7 +239,7 @@ function EditOrder() {
                 </Grid>
 
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <InputLabel id="emirate-label" className={classes.PhoneInput}>Customer phone</InputLabel>
                   <PhoneInput
                     className={classes.PhoneInput}
@@ -250,7 +250,7 @@ function EditOrder() {
                     value={recordState.customer_phone}
                     onChange={(e) => handleChangePhone(e, "customer_phone")} />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
@@ -267,7 +267,7 @@ function EditOrder() {
                   </FormControl>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   {recordState.emirate && recordState.emirate !== ORDER_EMIRATES[2] ? <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
@@ -284,7 +284,7 @@ function EditOrder() {
                     </Select>
                   </FormControl> : <React.Fragment />}
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   {recordState.type && recordState.type !== ORDER_TYPES[0] ? <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
@@ -304,7 +304,7 @@ function EditOrder() {
                   </FormControl> : <React.Fragment />}
                 </Grid>
                 <Grid xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
@@ -322,7 +322,7 @@ function EditOrder() {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="points"
@@ -334,7 +334,7 @@ function EditOrder() {
                   </TextField>
                 </Grid>
                 <Grid xs={12} />
-                <Grid xs={5} />
+                <Grid xs={12} sm={5} />
                 <Grid xs={1}>
                   <Button
                     type="submit"

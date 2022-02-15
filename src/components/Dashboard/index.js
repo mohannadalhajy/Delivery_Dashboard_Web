@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         border: '1px solid #dadce0',
         borderRadius: "8px",
         marginBottom: "16px",
-        maxWidth: '500px',
+        maxWidth: '250px',
         padding: "20px",
         margin: "20px"
     },
@@ -79,7 +79,7 @@ const Dashboard = () => {
                             <div className={classes.labelDetails}><br />Total vehicles:{vehicles.count}</div>
                         </div>
                     </Grid>
-                    <Grid item xs={6} md={3} >
+                    <Grid item xs={12} sm={6} md={3} >
                         <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_CLIENT_ROUTE}>
                             <MenuItem>
                                 <Button startIcon={<AddIcon />} className={classes.button1}>
@@ -95,7 +95,7 @@ const Dashboard = () => {
                             </MenuItem>
                         </Link>
                     </Grid>
-                    <Grid item xs={6} md={3} >
+                    <Grid item xs={12} sm={6} md={3} >
                         <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_DRIVER_ROUTE}>
                             <MenuItem>
                                 <Button startIcon={<AddIcon />} className={classes.button1}>

@@ -247,7 +247,7 @@ function ListDrivers() {
                                     {item.image ?
                                         <img src={IMAGES_DRIVERS_API_URL + '/' + item.image} width="36px" alt="avatar" />
                                         :
-                                        <Avatar className={colors[index % colors.length]}>{item.user_name[0]}</Avatar>
+                                        <Avatar className={colors[index % colors.length]}>{item.userName[0]}</Avatar>
                                     }
                                 </TableCell>
 

@@ -122,7 +122,7 @@ function ClientDetails() {
               srcImage={srcImage}
               Id={id}
               smallName={(client.client_name ? client.client_name : "")}
-              //userName={(client.user_name ? client.user_name : "")}
+              //userName={(client.userName ? client.userName : "")}
               bigName={client.company_name}
               editRoute={EDIT_CLIENT_ROUTE}
               baseRoute={CLIENTS_ROUTE}
@@ -150,8 +150,8 @@ function ClientDetails() {
                   </IconButton>
                 </Grid>
               </Grid>
-              {client.user_name ?
-                <div className={classes.labelDetails}><br />User name: {client.user_name}</div>
+              {client.userName ?
+                <div className={classes.labelDetails}><br />User name: {client.userName}</div>
                 : <div></div>}
               {client.password  && expand ?
                 <div className={classes.labelDetails}><br />Password: {client.password}</div>

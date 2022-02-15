@@ -112,9 +112,9 @@ function BaseUploadImage({ smallName, bigName, type, image, setImage, isDisabled
     const promise = APIClient.upload_image(formData);
     promise.then(
       res => {
-        // setTempImage(res.data.result);
-        // setSrcTempImage(IMAGES_URL + '/' + res.data.result);
-        // setImageError(success);
+         setTempImage(res.data.result);
+         setSrcTempImage(IMAGES_URL + '/' + res.data.result);
+         setImageError(success);
       }
     ).catch(err => {
       setImageError("Try again please");

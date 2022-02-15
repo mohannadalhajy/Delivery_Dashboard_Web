@@ -66,14 +66,14 @@ function App() {
     <div>
       <Router>
         <React.Suspense fallback={loading}>
-          {user.user.user_name === undefined ? <React.Fragment /> :
+          {user.user.userName === undefined ? <React.Fragment /> :
             <NavMenu setCollapsed={setCollapsed} collapsed={collapsed} />}
           <Sidebar
             sidebar={<SideBarContent />}
-            open={collapsed && user.user.user_name !== undefined}
-            docked={collapsed && mql.matches && user.user.user_name !== undefined}
+            open={collapsed && user.user.userName !== undefined}
+            docked={collapsed && mql.matches && user.user.userName !== undefined}
             onSetOpen={handle}
-            styles={{ sidebar: { background: "white" }, root: { top: user.user.user_name === undefined ? 0 : 60 } }}>
+            styles={{ sidebar: { background: "white" }, root: { top: user.user.userName === undefined ? 0 : 60 } }}>
               <Switch>
                 <Route exact path={LOGIN_ROUTE} component={login} />
                 <AuthRoute path={ADD_DRIVER_VEHICLE_ROUTE} component={addDriverVehicle} />

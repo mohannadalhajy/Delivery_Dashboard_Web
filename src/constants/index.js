@@ -1,5 +1,5 @@
-export const BASEURL = 'http://localhost:3002';
-//export const BASEURL = 'http://node-express-env.eba-vrmbrr9p.us-east-2.elasticbeanstalk.com';
+//export const BASEURL = 'http://localhost:3001';
+export const BASEURL = 'http://node-express-env.eba-wtui3e37.us-east-2.elasticbeanstalk.com';
 const PREFIX = '/dashboard' 
 ///Auth
 export const AUTH_API_URL = BASEURL+'/auth';

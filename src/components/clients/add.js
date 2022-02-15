@@ -130,7 +130,7 @@ function AddClient() {
               />
               <Divider variant="middle" />
               <Grid container>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="company_name"
@@ -141,20 +141,20 @@ function AddClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={0} sm={1}/>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
-                    fullWidth id="user_name"
-                    value={recordState.user_name}
-                    name="user_name"
+                    fullWidth id="userName"
+                    value={recordState.userName}
+                    name="userName"
                     required
-                    label="user_name"
+                    label="userName"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="password"
@@ -166,7 +166,7 @@ function AddClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="amount"
@@ -178,7 +178,7 @@ function AddClient() {
                   </TextField>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="points"
@@ -190,7 +190,7 @@ function AddClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="client_name"
@@ -201,7 +201,7 @@ function AddClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
@@ -220,7 +220,7 @@ function AddClient() {
                   </FormControl>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="city"
@@ -232,7 +232,7 @@ function AddClient() {
                   </TextField>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                 <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
                   <PhoneInput
                   className={classes.PhoneInput}
@@ -243,7 +243,7 @@ function AddClient() {
                     onChange={(e) => handleChangePhone(e, "client_phone")} />
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                 <InputLabel id="emirate-label" className={classes.PhoneInput}>Company phone</InputLabel>
                   <PhoneInput
                   className={classes.PhoneInput}
@@ -253,7 +253,7 @@ function AddClient() {
                     value={recordState.company_phone}
                     onChange={(e) => handleChangePhone(e, "company_phone")} />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="locationX"
@@ -265,7 +265,7 @@ function AddClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="locationY"
@@ -277,7 +277,7 @@ function AddClient() {
                   </TextField>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
                     fullWidth id="company_type"
@@ -289,7 +289,7 @@ function AddClient() {
                   </TextField>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       disableToolbar
@@ -306,7 +306,7 @@ function AddClient() {
                     />
                   </MuiPickersUtilsProvider>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       disableToolbar
@@ -324,7 +324,7 @@ function AddClient() {
                   </MuiPickersUtilsProvider>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={5}>
+                <Grid item xs={12} sm={5}>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                       className={classes.TextField}

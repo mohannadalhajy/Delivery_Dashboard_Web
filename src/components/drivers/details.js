@@ -130,8 +130,8 @@ function DriverDetails() {
               {recordState.visa_expiry_date ?
                 <div className={classes.labelDetails}><br />Visa expiry date: {recordState.visa_expiry_date}</div>
                 : <div></div>}
-              {recordState.user_name && expand ?
-                <div className={classes.labelDetails}><br />User name: {recordState.user_name}</div>
+              {recordState.userName && expand ?
+                <div className={classes.labelDetails}><br />User name: {recordState.userName}</div>
                 : <div></div>}
               {recordState.password && expand ?
                 <div className={classes.labelDetails}><br />Password: {recordState.password}</div>

@@ -129,7 +129,7 @@ function AddDriver() {
             />
             <Divider variant="middle" />
             <Grid container>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="first_name"
@@ -140,7 +140,7 @@ function AddDriver() {
                   onChange={(e) => handleChange(e)}/>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="middle_name"
@@ -151,7 +151,7 @@ function AddDriver() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="last_name"
@@ -163,7 +163,7 @@ function AddDriver() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="nick_name"
@@ -175,20 +175,20 @@ function AddDriver() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="user_name"
-                  value={recordState.user_name}
-                  name="user_name"
+                  fullWidth id="userName"
+                  value={recordState.userName}
+                  name="userName"
                   required
-                  label="user_name"
+                  label="userName"
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
               <Grid item xs={1} />
 
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="password"
@@ -200,7 +200,7 @@ function AddDriver() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="civil_id"
@@ -213,7 +213,7 @@ function AddDriver() {
               </Grid>
               <Grid item xs={1} />
 
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="address"
@@ -225,7 +225,7 @@ function AddDriver() {
                 </TextField>
               </Grid>
 
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="work_hours"
@@ -237,7 +237,7 @@ function AddDriver() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="salary"
@@ -248,7 +248,7 @@ function AddDriver() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="notes"
@@ -259,7 +259,7 @@ function AddDriver() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
                   fullWidth id="experience_years"
@@ -270,7 +270,7 @@ function AddDriver() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <InputLabel id="emirate-label" className={classes.PhoneInput}>Phone number</InputLabel>
                 <PhoneInput
                   className={classes.PhoneInput}
@@ -282,7 +282,7 @@ function AddDriver() {
                   onChange={(e) => handleChangePhone(e)} />
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
                   required
@@ -300,7 +300,7 @@ function AddDriver() {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
                   required
@@ -320,7 +320,7 @@ function AddDriver() {
                 </FormControl>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
                   required
@@ -339,7 +339,7 @@ function AddDriver() {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
                   required
@@ -359,7 +359,7 @@ function AddDriver() {
                 </FormControl>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -376,7 +376,7 @@ function AddDriver() {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -394,7 +394,7 @@ function AddDriver() {
                 </MuiPickersUtilsProvider>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
@@ -411,7 +411,7 @@ function AddDriver() {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar

@@ -131,7 +131,7 @@ function AddDriverVehicle() {
             encType="multipart/form-data">
 
             <Grid container>
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
                   required
@@ -149,7 +149,7 @@ function AddDriverVehicle() {
                 </FormControl>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={5}>
+              <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
                   required
@@ -170,7 +170,7 @@ function AddDriverVehicle() {
               <Grid item xs={1} />
               
 
-              <Grid xs={5} />
+              <Grid xs={12} sm={5} />
               <Grid xs={1}>
                 <Button
                   type="submit"
