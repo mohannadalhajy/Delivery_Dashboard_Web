@@ -5,14 +5,14 @@ import {
   ADD_CLIENT_ROUTE,
   ORDERS_ROUTE,
   DRIVERS_ROUTE,
-  VEHICLES_ROUTE,
-  ADD_DRIVER_VEHICLE_ROUTE,
-  RELEASE_VEHICLE_ROUTE,
-  RELEASE_DRIVER_ROUTE,
-  VEHICLES_DRIVERS_ROUTE,
-  DRIVERS_VEHICLES_ROUTE,
-  VEHICLES_TRANSACTIONS_ROUTE,
-  DASHBOARD_ROUTE
+  DASHBOARD_ROUTE,
+  CUSTOMERS_ROUTE,
+  ADD_CHARGE_ROUTE,
+  CHARGES_ROUTE,
+  ADD_CLIENT_ACCOUNT_ROUTE,
+  CLIENTS_ACCOUNTS_ROUTE,
+  ADD_DRIVER_ACCOUNT_ROUTE,
+  DRIVERS_ACCOUNTS_ROUTE
 } from '../../constants/index';
 import {
   Menu,
@@ -27,7 +27,7 @@ import { useSelector } from 'react-redux';
 import BusinessIcon from '@material-ui/icons/Business';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
+// import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import RemoveIcon from '@mui/icons-material/Remove';
 export default function SideBarContent({ classes }) {
   const location = useLocation();
@@ -85,7 +85,19 @@ export default function SideBarContent({ classes }) {
                     Drivers
                   </MenuItem>
                 </Link>
-                <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={VEHICLES_ROUTE}>
+                <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={CUSTOMERS_ROUTE}>
+                  <MenuItem className={location.pathname === CUSTOMERS_ROUTE ? classes.clientsLink : ""}>
+                    <IconButton
+                      edge="start"
+                      aria-label="menu"
+                      className={classes.icon}
+                    >
+                      <PersonOutlineSharpIcon />
+                    </IconButton>
+                    Customers
+                  </MenuItem>
+                </Link>
+                {/* <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={VEHICLES_ROUTE}>
                   <MenuItem className={location.pathname === VEHICLES_ROUTE ? classes.clientsLink : ""}>
                     <IconButton
                       edge="start"
@@ -96,13 +108,13 @@ export default function SideBarContent({ classes }) {
                     </IconButton>
                     Vehicles
                   </MenuItem>
-                </Link>
+                </Link> */}
               </Menu>
             </React.Fragment>
           )}
         </PopupState>
       </MenuItem>
-      <MenuItem><PopupState variant="popover" popupId="demo-popup-menu">
+      {/* <MenuItem><PopupState variant="popover" popupId="demo-popup-menu">
         {(popupState) => (
           <React.Fragment>
             <Button {...bindTrigger(popupState)} className={classes.button1}>
@@ -155,7 +167,7 @@ export default function SideBarContent({ classes }) {
           </React.Fragment>
         )}
       </PopupState>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem>
         <PopupState variant="popover" popupId="demo-popup-menu">
           {(popupState) => (
@@ -164,7 +176,67 @@ export default function SideBarContent({ classes }) {
                 Accounting
               </Button>
               <Menu {...bindMenu(popupState)}>
+                <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_CHARGE_ROUTE}>
+                  <MenuItem>
+                    <Button startIcon={<AddIcon />} className={classes.button1}>
+                      Add charge
+                    </Button>
+                  </MenuItem>
+                </Link>
 
+                <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_CLIENT_ACCOUNT_ROUTE}>
+                  <MenuItem>
+                    <Button startIcon={<AddIcon />} className={classes.button1}>
+                      Delivery amount
+                    </Button>
+                  </MenuItem>
+                </Link>
+
+                <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_DRIVER_ACCOUNT_ROUTE}>
+                  <MenuItem>
+                    <Button startIcon={<AddIcon />} className={classes.button1}>
+                      Driver amount
+                    </Button>
+                  </MenuItem>
+                </Link>
+
+                <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={CHARGES_ROUTE}>
+                  <MenuItem className={location.pathname === CHARGES_ROUTE ? classes.clientsLink : ""}>
+                    <IconButton
+                      edge="start"
+                      aria-label="menu"
+                      className={classes.icon}
+                    >
+                      <PersonOutlineSharpIcon />
+                    </IconButton>
+                    Charges
+                  </MenuItem>
+                </Link>
+                <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={CLIENTS_ACCOUNTS_ROUTE}>
+                  <MenuItem className={location.pathname === CLIENTS_ACCOUNTS_ROUTE ? classes.clientsLink : ""}>
+                    <IconButton
+                      edge="start"
+                      aria-label="menu"
+                      className={classes.icon}
+                    >
+                      <PersonOutlineSharpIcon />
+                    </IconButton>
+                    Amounts delivered
+                  </MenuItem>
+                </Link>
+
+                <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={DRIVERS_ACCOUNTS_ROUTE}>
+                  <MenuItem className={location.pathname === CLIENTS_ACCOUNTS_ROUTE ? classes.clientsLink : ""}>
+                    <IconButton
+                      edge="start"
+                      aria-label="menu"
+                      className={classes.icon}
+                    >
+                      <PersonOutlineSharpIcon />
+                    </IconButton>
+                    Driver amounts
+                  </MenuItem>
+                </Link>
               </Menu>
             </React.Fragment>
           )}

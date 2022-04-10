@@ -1,5 +1,5 @@
-//export const BASEURL = 'http://localhost:3001';
-export const BASEURL = 'http://node-express-env.eba-wtui3e37.us-east-2.elasticbeanstalk.com';
+export const BASEURL = 'http://localhost:3000';
+// export const BASEURL = 'http://nanospeed.eba-ycwmdmqb.us-east-2.elasticbeanstalk.com';
 const PREFIX = '/dashboard' 
 ///Auth
 export const AUTH_API_URL = BASEURL+'/auth';
@@ -16,16 +16,33 @@ export const CLIENTS_API_URL = BASEURL+'/clients'
 export const DELETE_ALL_CLIENTS_API_URL = CLIENTS_API_URL+'/deleteAll';
 export const DELETE_CLIENTS_API_URL = CLIENTS_API_URL+'/deleteGroup';
 export const CLIENTS_ORDERS_API_URL = CLIENTS_API_URL+'/orders';
+export const CLIENTS_CHARGES_API_URL = CLIENTS_API_URL+'/charges';
 export const UPLOAD_IMAGE_CLIENT_API_URL = CLIENTS_API_URL+'/uploadImage';
 export const COMPANIES_NAMES_API_URL = CLIENTS_API_URL+'/companiesNames';
 export const IMAGES_CLIENTS_API_URL = BASEURL+'/clientsImages';
 export const IMAGES_DRIVERS_API_URL = BASEURL+'/driversImages';
 export const DOWNLOAD_EXCEL_API_URL = BASEURL+'/excel';
 export const DOWNLOAD_ERRORS_API_URL = BASEURL+'/errors';
+////Customer
+export const CUSTOMERS_API_URL = BASEURL+'/clientsCustomers'
+export const CUSTOMERS_NAMES_API_URL = CUSTOMERS_API_URL+'/names'
+export const DELETE_ALL_CUSTOMERS_API_URL = CLIENTS_API_URL+'/deleteAll';
+export const DELETE_CUSTOMERS_API_URL = CLIENTS_API_URL+'/deleteGroup';
+export const CUSTOMERS_ORDERS_API_URL = CLIENTS_API_URL+'/orders';
+export const UPLOAD_IMAGE_CUSTOMER_API_URL = CLIENTS_API_URL+'/uploadImage';
+export const IMAGES_CUSTOMERS_API_URL = BASEURL+'/customersImages';
+
 ////Orders
 export const ORDERS_API_URL = BASEURL+'/orders'
 export const DELETE_ALL_ORDERS_API_URL = ORDERS_API_URL+'/deleteAll';
+export const EDIT_ORDER_DRIVER_API_URL = ORDERS_API_URL+'/driver';
 export const DELETE_ORDERS_API_URL = ORDERS_API_URL+'/deleteGroup';
+////charges
+export const CHARGES_API_URL = BASEURL+'/charges'
+////clients account
+export const CLIENTS_ACCOUNTS_API_URL = BASEURL+'/clientsAccounts'
+////clients account
+export const DRIVERS_ACCOUNTS_API_URL = BASEURL+'/driversAccounts'
 ////Drivers
 export const DRIVERS_API_URL = BASEURL+'/drivers'
 export const DELETE_ALL_DRIVERS_API_URL = DRIVERS_API_URL+'/deleteAll';
@@ -57,10 +74,28 @@ export const CLIENT_ORDERS_ROUTE = PREFIX + '/clientOrders';
 export const EDIT_CLIENT_ROUTE = PREFIX + '/editClient';
 export const ADD_CLIENT_ROUTE = PREFIX + '/addClient';
 ////orders route
+export const CUSTOMERS_ROUTE = PREFIX + '/customers';
+export const CUSTOMER_DETAILS_ROUTE = PREFIX + '/customerDetails';
+export const CUSTOMER_ORDERS_ROUTE = PREFIX + '/customerOrders';
+export const EDIT_CUSTOMER_ROUTE = PREFIX + '/editCustomer';
+export const ADD_CUSTOMER_ROUTE = PREFIX + '/addCustomer';
+////orders route
 export const ORDERS_ROUTE = PREFIX + '/orders';
 export const ORDER_DETAILS_ROUTE = PREFIX + '/orderDetails';
 export const EDIT_ORDER_ROUTE = PREFIX + '/editOrder';
 export const ADD_ORDER_ROUTE = PREFIX + '/addOrder';
+////charges route
+export const CHARGES_ROUTE = PREFIX + '/charges';
+export const EDIT_CHARGE_ROUTE = PREFIX + '/editCharge';
+export const ADD_CHARGE_ROUTE = PREFIX + '/addCharge';
+////clients accounts route
+export const CLIENTS_ACCOUNTS_ROUTE = PREFIX + '/clientsAccounts';
+export const EDIT_CLIENT_ACCOUNT_ROUTE = PREFIX + '/editClientAccount';
+export const ADD_CLIENT_ACCOUNT_ROUTE = PREFIX + '/addClientAccount';
+////clients accounts route
+export const DRIVERS_ACCOUNTS_ROUTE = PREFIX + '/driversAccounts';
+export const EDIT_DRIVER_ACCOUNT_ROUTE = PREFIX + '/editDriverAccount';
+export const ADD_DRIVER_ACCOUNT_ROUTE = PREFIX + '/addDriverAccount';
 ////drivers route
 export const DRIVERS_ROUTE = PREFIX + '/drivers';
 export const DRIVER_DETAILS_ROUTE = PREFIX + '/driverDetails';

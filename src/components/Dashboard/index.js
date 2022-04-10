@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getClients } from '../../redux/clients/Actions';
 import { getDrivers } from '../../redux/drivers/Actions';
 import { getOrders } from '../../redux/orders/Actions';
-import { getVehicles } from '../../redux/vehicles/Actions';
+// import { getVehicles } from '../../redux/vehicles/Actions';
 import AddIcon from '@material-ui/icons/Add';
 import {
     Grid,
@@ -12,7 +12,7 @@ import {
     MenuItem
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { ADD_CLIENT_ROUTE, ADD_DRIVER_ROUTE, ADD_ORDER_ROUTE, ADD_VEHICLE_ROUTE } from '../../constants';
+import { ADD_CLIENT_ROUTE, ADD_CUSTOMER_ROUTE, ADD_DRIVER_ROUTE, ADD_ORDER_ROUTE } from '../../constants';
 const useStyles = makeStyles((theme) => ({
     card: {
         border: '1px solid #dadce0',
@@ -52,7 +52,7 @@ const Dashboard = () => {
     const clients = useSelector(state => state.Clients);
     const drivers = useSelector(state => state.Drivers);
     const orders = useSelector(state => state.Orders);
-    const vehicles = useSelector(state => state.Vehicles);
+    // const vehicles = useSelector(state => state.Vehicles);
     const classes = useStyles();
     useEffect(() => {
         // var str = location.search;
@@ -61,7 +61,7 @@ const Dashboard = () => {
         dispatch(getClients({}));
         dispatch(getDrivers({}));
         dispatch(getOrders({}));
-        dispatch(getVehicles({}));
+        // dispatch(getVehicles({}));
         // setCurrPage(page);
         // setCountInPage(take);
     }, [dispatch, countInPage])
@@ -76,7 +76,7 @@ const Dashboard = () => {
                             <div className={classes.labelDetails}><br />Total clients:{clients.count}</div>
                             <div className={classes.labelDetails}><br />Total orders:{orders.count}</div>
                             <div className={classes.labelDetails}><br />Total drivers:{drivers.count}</div>
-                            <div className={classes.labelDetails}><br />Total vehicles:{vehicles.count}</div>
+                            {/* <div className={classes.labelDetails}><br />Total vehicles:{vehicles.count}</div> */}
                         </div>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3} >
@@ -103,13 +103,20 @@ const Dashboard = () => {
                                 </Button>
                             </MenuItem>
                         </Link>
-                        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_VEHICLE_ROUTE}>
+                        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_CUSTOMER_ROUTE}>
+                            <MenuItem>
+                                <Button startIcon={<AddIcon />} className={classes.button1}>
+                                    Add customer
+                                </Button>
+                            </MenuItem>
+                        </Link>
+                        {/* <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_VEHICLE_ROUTE}>
                             <MenuItem>
                                 <Button startIcon={<AddIcon />} className={classes.button1}>
                                     Add vehicle
                                 </Button>
                             </MenuItem>
-                        </Link>
+                        </Link> */}
                     </Grid>
                 </Grid>
 

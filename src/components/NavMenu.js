@@ -131,7 +131,7 @@ export default function NavMenu({ setCollapsed, collapsed }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title} noWrap>
-            Sinbad
+            Nano Speed
           </Typography>
           <div className={classes.grow} />
           <div>

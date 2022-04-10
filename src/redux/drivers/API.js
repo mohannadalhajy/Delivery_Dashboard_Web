@@ -12,9 +12,9 @@ export const getBusyNames= ()=>
 {
     return API.get(DRIVERS_BUSY_NAMES_API_URL);
 }
-export const getNames= ()=>
+export const getNames= (id)=>
 {
-    return API.get(DRIVERS_NAMES_API_URL);
+    return API.get(DRIVERS_NAMES_API_URL+(id?("?id="+id):""));
 }
 export const getByPage= (page, take)=>
 {

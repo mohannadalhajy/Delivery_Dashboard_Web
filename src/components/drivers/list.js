@@ -33,7 +33,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import { Link } from 'react-router-dom';
-import { DRIVER_DETAILS_ROUTE, EDIT_DRIVER_ROUTE, IMAGES_DRIVERS_API_URL } from '../../constants/index';
+import { DRIVER_DETAILS_ROUTE, DRIVER_STATUS, EDIT_DRIVER_ROUTE, IMAGES_DRIVERS_API_URL, SHIFT_TYPES, TRANSPORT_TYPES } from '../../constants/index';
 import MenuItemDelete from '../Base/MenuItemDelete';
 import MenuItemExport from '../Base/MenuItemExport';
 import DialogDeleteDrivers from './DialogDeleteDrivers';
@@ -256,26 +256,26 @@ function ListDrivers() {
                                     className={classes.tableCell}
                                     component={Link}
                                     to={getDetailsRoute(item.id)}>
-                                    {item.nick_name}
+                                    {item.nickName}
                                 </TableCell>
                                 <TableCell
                                     align="left"
                                     className={classes.tableCell}
                                     component={Link}
                                     to={getDetailsRoute(item.id)}
-                                >{item.shift_type}</TableCell>
+                                >{SHIFT_TYPES[item.shiftType]}</TableCell>
                                 <TableCell
                                     align="left"
                                     className={classes.tableCell}
                                     component={Link}
                                     to={getDetailsRoute(item.id)}>
-                                    {item.status}</TableCell>
+                                    {DRIVER_STATUS[item.status]}</TableCell>
                                 <TableCell
                                     className={classes.tableCell}
                                     align="left"
                                     component={Link}
                                     to={getDetailsRoute(item.id)}>
-                                    {item.transport_type}</TableCell>
+                                    {TRANSPORT_TYPES[item.transportType]}</TableCell>
                                 <TableCell align="left" size='small' class="actions">
                                     <IconButton
                                         size="small"

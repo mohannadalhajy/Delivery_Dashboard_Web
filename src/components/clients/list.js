@@ -33,7 +33,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import { Link } from 'react-router-dom';
-import { CLIENT_DETAILS_ROUTE, EDIT_CLIENT_ROUTE, IMAGES_CLIENTS_API_URL } from '../../constants/index';
+import { CLIENT_DETAILS_ROUTE, EDIT_CLIENT_ROUTE, EMIRATES, IMAGES_CLIENTS_API_URL } from '../../constants/index';
 import MenuItemDelete from '../Base/MenuItemDelete';
 import MenuItemExport from '../Base/MenuItemExport';
 import DialogDeleteClients from './DialogDeleteClients';
@@ -214,7 +214,6 @@ function ListClients() {
                                 </TableCell>
                                 <TableCell align="left">Company name</TableCell>
                                 <TableCell align="left">Client name</TableCell>
-                                <TableCell align="left">Points</TableCell>
                                 <TableCell align="left">Emirate</TableCell>
                                 <TableCell align="left" size='small'></TableCell>
                                 <TableCell align="right" size='small'></TableCell>
@@ -247,7 +246,7 @@ function ListClients() {
                                     {item.image ?
                                         <img src={IMAGES_CLIENTS_API_URL + '/' + item.image} width="36px" alt="avatar" />
                                         :
-                                        <Avatar className={colors[index % colors.length]}>{item.userName[0]}</Avatar>
+                                        <Avatar className={colors[index % colors.length]}>{item.companyNameEnglish[0]}</Avatar>
                                     }
                                 </TableCell>
 
@@ -256,26 +255,20 @@ function ListClients() {
                                     className={classes.tableCell}
                                     component={Link}
                                     to={getDetailsRoute(item.id)}>
-                                    {item.company_name}
+                                    {item.companyNameEnglish}
                                 </TableCell>
                                 <TableCell
                                     align="left"
                                     className={classes.tableCell}
                                     component={Link}
                                     to={getDetailsRoute(item.id)}
-                                >{item.client_name}</TableCell>
-                                <TableCell
-                                    align="left"
-                                    className={classes.tableCell}
-                                    component={Link}
-                                    to={getDetailsRoute(item.id)}>
-                                    {item.points}</TableCell>
+                                >{item.clientNameEnglish}</TableCell>
                                 <TableCell
                                     className={classes.tableCell}
                                     align="left"
                                     component={Link}
                                     to={getDetailsRoute(item.id)}>
-                                    {item.emirate}</TableCell>
+                                    {EMIRATES[item.emirate]}</TableCell>
                                 <TableCell align="left" size='small' class="actions">
                                     <IconButton
                                         size="small"

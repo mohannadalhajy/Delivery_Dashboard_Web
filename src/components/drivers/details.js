@@ -12,7 +12,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BaseWaiting from '../Base/BaseWaiting';
 import { deleteDriver } from '../../redux/drivers/Actions';
-const { IMAGES_DRIVERS_API_URL, EDIT_DRIVER_ROUTE, DRIVERS_ROUTE } = require('../../constants/index');
+const { IMAGES_DRIVERS_API_URL, EDIT_DRIVER_ROUTE, DRIVERS_ROUTE, VISA_TYPES, TRANSPORT_TYPES, SHIFT_TYPES, DRIVER_STATUS } = require('../../constants/index');
 const API = require('../../redux/drivers/API');
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,8 +72,8 @@ function DriverDetails() {
             <BaseDisplayImage
               srcImage={srcImage}
               Id={id}
-              bigName={recordState.first_name && recordState.last_name ? recordState.first_name + " " + recordState.last_name : ""}
-              smallName={recordState.status && recordState.transport_type ? recordState.transport_type + "-" + recordState.status : ""}
+              bigName={recordState.firstName && recordState.lastName ? recordState.firstName + " " + recordState.lastName : ""}
+              smallName={recordState.status && recordState.transportType ? recordState.transportType + "-" + recordState.status : ""}
               editRoute={EDIT_DRIVER_ROUTE}
               baseRoute={DRIVERS_ROUTE}
               deleteRecord={deleteDriver}
@@ -100,76 +100,74 @@ function DriverDetails() {
                   </IconButton>
                 </Grid>
               </Grid>
-              {recordState.nick_name ?
-                <div className={classes.labelDetails}><br />Nick name: {recordState.nick_name}</div>
+              {recordState.nickName ?
+                <div className={classes.labelDetails}><br />Nick name: {recordState.nickName}</div>
                 : <div></div>}
-              {recordState.first_name ?
-                <div className={classes.labelDetails}><br />First name: {recordState.first_name}</div>
+              {recordState.firstName ?
+                <div className={classes.labelDetails}><br />First name: {recordState.firstName}</div>
                 : <div></div>}
-              {recordState.middle_name && expand ?
-                <div className={classes.labelDetails}><br />Middle name: {recordState.middle_name}</div>
+              {recordState.middleName && expand ?
+                <div className={classes.labelDetails}><br />Middle name: {recordState.middleName}</div>
                 : <div></div>}
-              {recordState.last_name ?
-                <div className={classes.labelDetails}><br />Last name: {recordState.last_name}</div>
+              {recordState.lastName ?
+                <div className={classes.labelDetails}><br />Last name: {recordState.lastName}</div>
                 : <div></div>}
               {recordState.phone ?
                 <div className={classes.labelDetails}><br />Phone: {recordState.phone}</div>
                 : <div></div>}
-              {recordState.status ?
-                <div className={classes.labelDetails}><br />Status: {recordState.status}</div>
+              {recordState.status !== undefined ?
+                <div className={classes.labelDetails}><br />Status: {DRIVER_STATUS[recordState.status]}</div>
                 : <div></div>}
-              {recordState.shift_type ?
-                <div className={classes.labelDetails}><br />Shift type: {recordState.shift_type}</div>
+              {recordState.amount !== undefined ?
+                <div className={classes.labelDetails}><br />Amount: {recordState.amount}</div>
                 : <div></div>}
-              {recordState.transport_type ?
-                <div className={classes.labelDetails}><br />Transport type: {recordState.transport_type}</div>
+              {recordState.shiftType !== undefined ?
+                <div className={classes.labelDetails}><br />Shift type: {SHIFT_TYPES[recordState.shiftType]}</div>
                 : <div></div>}
-              {recordState.visa_type && expand ?
-                <div className={classes.labelDetails}><br />Visa type: {recordState.visa_type}</div>
+              {recordState.transportType !== undefined ?
+                <div className={classes.labelDetails}><br />Transport type: {TRANSPORT_TYPES[recordState.transportType]}</div>
                 : <div></div>}
-              {recordState.visa_expiry_date ?
-                <div className={classes.labelDetails}><br />Visa expiry date: {recordState.visa_expiry_date}</div>
+              {recordState.visaType !== undefined && expand ?
+                <div className={classes.labelDetails}><br />Visa type: {VISA_TYPES[recordState.visaType]}</div>
+                : <div></div>}
+              {recordState.visaExpiryDate ?
+                <div className={classes.labelDetails}><br />Visa expiry date: {recordState.visaExpiryDate}</div>
                 : <div></div>}
               {recordState.userName && expand ?
                 <div className={classes.labelDetails}><br />User name: {recordState.userName}</div>
                 : <div></div>}
-              {recordState.password && expand ?
-                <div className={classes.labelDetails}><br />Password: {recordState.password}</div>
-                : <div></div>}
               {recordState.address && expand ?
                 <div className={classes.labelDetails}><br />Address: {recordState.address}</div>
                 : <div></div>}
-              {recordState.work_hours && expand ?
-                <div className={classes.labelDetails}><br />Work hours: {recordState.work_hours}</div>
+              {recordState.workHours && expand ?
+                <div className={classes.labelDetails}><br />Work hours: {recordState.workHours}</div>
                 : <div></div>}
               {recordState.salary && expand ?
                 <div className={classes.labelDetails}><br />Salary: {recordState.salary}</div>
                 : <div></div>}
-              {recordState.experience_years && expand ?
-                <div className={classes.labelDetails}><br />Experience years: {recordState.experience_years}</div>
+              {recordState.experienceYears && expand ?
+                <div className={classes.labelDetails}><br />Experience years: {recordState.experienceYears}</div>
                 : <div></div>}
-              {recordState.civil_id && expand ?
-                <div className={classes.labelDetails}><br />Civil id: {recordState.civil_id}</div>
+              {recordState.civilId && expand ?
+                <div className={classes.labelDetails}><br />Civil id: {recordState.civilId}</div>
                 : <div></div>}
               {recordState.birthdate && expand ?
                 <div className={classes.labelDetails}><br />Birthdate: {recordState.birthdate}</div>
                 : <div></div>}
-              {recordState.service_start_date && expand ?
-                <div className={classes.labelDetails}><br />Start date: {recordState.service_start_date}</div>
+              {recordState.serviceStartDate && expand ?
+                <div className={classes.labelDetails}><br />Start date: {recordState.serviceStartDate}</div>
                 : <div></div>}
-              {recordState.service_end_date && expand ?
-                <div className={classes.labelDetails}><br />End date: {recordState.service_end_date}</div>
+              {recordState.serviceEndDate && expand ?
+                <div className={classes.labelDetails}><br />End date: {recordState.serviceEndDate}</div>
                 : <div></div>}
-              {recordState.locationX && expand ?
-                <div className={classes.labelDetails}><br />location X: {recordState.locationX}</div>
+              {recordState.latitude && expand ?
+                <div className={classes.labelDetails}><br />Latitude: {recordState.latitude}</div>
                 : <div></div>}
-              {recordState.locationY && expand ?
-                <div className={classes.labelDetails}><br />location Y: {recordState.locationY}</div>
+              {recordState.longitude && expand ?
+                <div className={classes.labelDetails}><br />Longitude: {recordState.longitude}</div>
                 : <div></div>}
               {recordState.notes && expand ?
                 <div className={classes.labelDetails}><br />Notes: {recordState.notes}</div>
-                : <div></div>}
-              {expand && recordState.notes ? recordState.notes
                 : <div></div>}
             </div>
           </div>

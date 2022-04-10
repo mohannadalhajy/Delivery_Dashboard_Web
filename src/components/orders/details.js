@@ -12,7 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BaseWaiting from '../Base/BaseWaiting';
 import EditIcon from '@material-ui/icons/Edit';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
-import { EDIT_ORDER_ROUTE, ORDERS_ROUTE } from '../../constants';
+import { EDIT_ORDER_ROUTE, ORDERS_ROUTE, ORDER_EMIRATES, ORDER_STATUS_TYPES, TRANSPORT_TYPES } from '../../constants';
 const APIOrder = require('../../redux/orders/API');
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -101,25 +101,25 @@ function OrderDetails() {
               </Grid>
             </Grid>
 
-            {order.company_name ?
-              <div className={classes.labelDetails}><br />Company name: {order.company_name}</div>
+            {order.companyNameEnglish ?
+              <div className={classes.labelDetails}><br />Company name: {order.companyNameEnglish}</div>
               : <div></div>}
 
-            {order.driver_name ?
-              <div className={classes.labelDetails}><br />Driver name: {order.driver_name}</div>
+            {order.driverName ?
+              <div className={classes.labelDetails}><br />Driver name: {order.driverName}</div>
               : <div></div>}
-            {order.status ?
-              <div className={classes.labelDetails}><br />Status: {order.status}</div>
+            {order.status !== undefined ?
+              <div className={classes.labelDetails}><br />Status: {ORDER_STATUS_TYPES[order.status]}</div>
               : <div></div>}
 
             {order.points !== null ?
               <div className={classes.labelDetails}><br />Points: {order.points}</div>
               : <div></div>}
-            {order.emirate ?
-              <div className={classes.labelDetails}><br />Emirate: {order.emirate}</div>
+            {order.emirate !== undefined ?
+              <div className={classes.labelDetails}><br />Emirate: {ORDER_EMIRATES[order.emirate]}</div>
               : <div></div>}
-            {order.transport_type && expand ?
-              <div className={classes.labelDetails}><br />Transport type: {order.transport_type}</div>
+            {order.transportType !== undefined&& expand ?
+              <div className={classes.labelDetails}><br />Transport type: {TRANSPORT_TYPES[order.transportType]}</div>
               : <div></div>}
             {order.type && expand ?
               <div className={classes.labelDetails}><br />Type: {order.type}</div>
@@ -127,20 +127,20 @@ function OrderDetails() {
             {order.amount && expand ?
               <div className={classes.labelDetails}><br />Amount: {order.amount}</div>
               : <div></div>}
-            {order.customer_name && expand ?
-              <div className={classes.labelDetails}><br />Customer name: {order.customer_name}</div>
+            {order.customerName && expand ?
+              <div className={classes.labelDetails}><br />Customer name: {order.customerName}</div>
               : <div></div>}
-            {order.customer_phone && expand ?
-              <div className={classes.labelDetails}><br />Customer phone: {order.customer_phone}</div>
+            {order.customerPhone && expand ?
+              <div className={classes.labelDetails}><br />Customer phone: {order.customerPhone}</div>
               : <div></div>}
             {order.address && expand ?
               <div className={classes.labelDetails}><br />Customer address: {order.address}</div>
               : <div></div>}
-            {order.start_date && expand ?
-              <div className={classes.labelDetails}><br />Start date: {order.start_date}</div>
+            {order.startDate && expand ?
+              <div className={classes.labelDetails}><br />Start date: {order.startDate}</div>
               : <div></div>}
-            {expand && order.end_date ?
-              <div className={classes.labelDetails}><br />End date: {order.end_date}</div>
+            {expand && order.endDate ?
+              <div className={classes.labelDetails}><br />End date: {order.endDate}</div>
               : <div></div>}
           </div>
         </Grid>

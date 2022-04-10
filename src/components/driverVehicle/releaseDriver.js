@@ -92,7 +92,7 @@ function ReleaseDriver() {
   const addClick = (e) => {
     e.preventDefault();
     setSnackbarState({ ...SnackbarState, open: true,severity: "info", message: "Please wait" })
-    const promise = APIDriver_Vehicle.releaseDriver(recordState.driver_id)
+    const promise = APIDriver_Vehicle.releaseDriver(recordState.driverId)
     promise.then(res => {
       setSnackbarState({ ...SnackbarState, open: false })
       history.goBack();
@@ -128,13 +128,13 @@ function ReleaseDriver() {
                   variant="standard" fullWidth>
                   <InputLabel id="emirate-label">Driver name</InputLabel>
                   <Select
-                    id="driver_id"
+                    id="driverId"
                     required
-                    value={recordState.driver_id}
-                    name="driver_id"
+                    value={recordState.driverId}
+                    name="driverId"
                     onChange={handleChange}
                     label="Driver name">
-                    {drivers.map(driver => (<MenuItem value={driver.id}>{driver.first_name + " " + driver.middle_name + " " + driver.last_name + " " + driver.nick_name}</MenuItem>))}
+                    {drivers.map(driver => (<MenuItem value={driver.id}>{driver.firstName + " " + driver.middleName + " " + driver.lastName + " " + driver.nickName}</MenuItem>))}
                   </Select>
                 </FormControl>
               </Grid>

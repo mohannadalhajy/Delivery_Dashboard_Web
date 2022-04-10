@@ -1,12 +1,12 @@
 const client = require ('../API_Client');
-const {ORDERS_API_URL, DELETE_ALL_ORDERS_API_URL, DELETE_ORDERS_API_URL} = require ('../../constants/index');
+const {ORDERS_API_URL, DELETE_ALL_ORDERS_API_URL, DELETE_ORDERS_API_URL, EDIT_ORDER_DRIVER_API_URL } = require ('../../constants/index');
 export const get= ()=>
 {
     return client.get(ORDERS_API_URL);
 }
-export const getByPage= (page, take)=>
+export const getByPage= (page, take, type)=>
 {
-    return client.get(ORDERS_API_URL+"?&page="+page+"&take="+take);
+    return client.get(ORDERS_API_URL+"?&page="+page+"&take="+take+(type?("&type="+type):""));
 }
 export const getById= (id)=>
 {
@@ -20,6 +20,11 @@ export const post= async(body)=>
 export const patch= async(body, id)=>
 {
     const data = client.patch(ORDERS_API_URL, body ,id);
+    return data;
+}
+export const patchDriver= async(body, id)=>
+{
+    const data = client.patch(EDIT_ORDER_DRIVER_API_URL, body ,id);
     return data;
 }
 export const deleteItem= async(id)=>

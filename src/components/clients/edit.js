@@ -148,8 +148,8 @@ function EditClient() {
               encType="multipart/form-data">
               <BaseUploadImage
                 IMAGES_URL={IMAGES_CLIENTS_API_URL}
-                smallName={recordState.company_name}
-                bigName={recordState.client_name}
+                smallName={recordState.companyNameEnglish}
+                bigName={recordState.clientNameEnglish}
                 type="Edit"
                 image={recordState.image}
                 setImage={setImage}
@@ -160,15 +160,26 @@ function EditClient() {
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
-                    fullWidth id="company_name"
-                    value={recordState.company_name}
-                    name="company_name"
+                    fullWidth id="companyNameEnglish"
+                    value={recordState.companyNameEnglish}
+                    name="companyNameEnglish"
                     required
-                    label="Company name"
+                    label="Company name english"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                <Grid item xs={1} />
+                <Grid item xs={0} sm={1}/>
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="companyNameArabic"
+                    value={recordState.companyNameArabic}
+                    name="companyNameArabic"
+                    required
+                    label="Company name arabic"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
@@ -180,54 +191,8 @@ function EditClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
+                <Grid item xs={0} sm={1}/>
 
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="password"
-                    value={recordState.password}
-                    name="password"
-                    required
-                    label="Password"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="amount"
-                    value={recordState.amount}
-                    name="amount"
-                    required
-                    label="Amount"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="points"
-                    value={recordState.points}
-                    name="points"
-                    required
-                    label="Points"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="client_name"
-                    value={recordState.client_name}
-                    name="client_name"
-                    required
-                    label="Client name"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
                 <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
@@ -242,7 +207,7 @@ function EditClient() {
                       onChange={handleChange}
                       label="Emirate"
                     >
-                      {emirates.map(emirate => (<MenuItem value={emirate}>{emirate}</MenuItem>))}
+                      {emirates.map((emirate, index) => (<MenuItem value={index}>{emirate}</MenuItem>))}
                     </Select>
                   </FormControl>
                 </Grid>
@@ -250,44 +215,110 @@ function EditClient() {
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
-                    fullWidth id="city"
-                    value={recordState.city}
-                    name="city"
+                    fullWidth id="clientNameEnglish"
+                    value={recordState.clientNameEnglish}
+                    name="clientNameEnglish"
                     required
-                    label="City"
+                    label="Client name english"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                <Grid item xs={0} sm={1}/>
+
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="clientNameArabic"
+                    value={recordState.clientNameArabic}
+                    name="clientNameArabic"
+                    required
+                    label="Client name arabic"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                
+                <Grid item xs={1} />
+                
+                
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="addressEnglish"
+                    value={recordState.addressEnglish}
+                    name="addressEnglish"
+                    required
+                    label="Address english"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                <Grid item xs={1} />
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="addressArabic"
+                    value={recordState.addressArabic}
+                    name="addressArabic"
+                    required
+                    label="Address arabic"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                <Grid item xs={1} />
+                <Grid item xs={12} sm={5}>
+                <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
+                  <PhoneInput
+                  className={classes.PhoneInput}
+                    placeholder="Client phone"
+                    name="clientPhone"
+                    defaultCountry="AE"
+                    value={recordState.clientPhone}
+                    onChange={(e) => handleChangePhone(e, "clientPhone")} />
+                </Grid>
+                <Grid item xs={1} />
+                <Grid item xs={12} sm={5}>
+                <InputLabel id="emirate-label" className={classes.PhoneInput}>Company phone</InputLabel>
+                  <PhoneInput
+                  className={classes.PhoneInput}
+                    placeholder="Company phone"
+                    name="companyPhone"
+                    defaultCountry="AE"
+                    value={recordState.companyPhone}
+                    onChange={(e) => handleChangePhone(e, "companyPhone")} />
+                </Grid>
+                <Grid item xs={1} />
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="latitude"
+                    value={recordState.latitude}
+                    name="latitude"
+                    required
+                    label="latitude"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                <Grid item xs={1} />
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="longitude"
+                    value={recordState.longitude}
+                    name="longitude"
+                    required
+                    label="longitude"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
 
-                <Grid item xs={12} sm={5}>
-                <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
-                  <PhoneInput
-                    className={classes.PhoneInput}
-                    placeholder="Client phone"
-                    name="client_phone"
-                    defaultCountry="AE"
-                    value={recordState.client_phone}
-                    onChange={(e) => handleChangePhone(e, "client_phone")} />
-                </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
-                  <PhoneInput
-                    className={classes.PhoneInput}
-                    placeholder="Company phone"
-                    name="company_phone"
-                    defaultCountry="AE"
-                    value={recordState.company_phone}
-                    onChange={(e) => handleChangePhone(e, "company_phone")} />
-                </Grid>
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
-                    fullWidth id="locationX"
-                    value={recordState.locationX}
-                    name="locationX"
+                    fullWidth id="companyTypeEnglish"
+                    value={recordState.companyTypeEnglish}
+                    name="companyTypeEnglish"
                     required
-                    label="Location X"
+                    label="Company type english"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
@@ -295,22 +326,11 @@ function EditClient() {
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
-                    fullWidth id="locationY"
-                    value={recordState.locationY}
-                    name="locationY"
+                    fullWidth id="companyTypeArabic"
+                    value={recordState.companyTypeArabic}
+                    name="companyTypeArabic"
                     required
-                    label="location Y"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="company_type"
-                    value={recordState.company_type}
-                    name="company_type"
-                    required
-                    label="Company type"
+                    label="Company type arabic"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
@@ -318,33 +338,14 @@ function EditClient() {
                 <Grid item xs={12} sm={5}>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
-                      className={classes.TextField}
                       disableToolbar
+                      className={classes.TextField}
                       variant="inline"
                       format="MM/dd/yyyy"
-                      name="contract_date"
-                      margin="normal"
-                      label="Contract date"
-                      value={recordState.contract_date}
-                      onChange={(e) => handleChangeDate(e, "contract_date")}
-                      KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                    />
-                  </MuiPickersUtilsProvider>
-                </Grid>
-                <Grid item xs={12} sm={5}>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      className={classes.TextField}
-                      disableToolbar
-                      variant="inline"
-                      format="MM/dd/yyyy"
-                      name="service_start_date"
                       margin="normal"
                       label="Service start date"
-                      value={recordState.service_start_date}
-                      onChange={(e) => handleChangeDate(e, "service_start_date")}
+                      value={recordState.serviceStartDate}
+                      onChange={(e) => handleChangeDate(e, "serviceStartDate")}
                       KeyboardButtonProps={{
                         'aria-label': 'change date',
                       }}
@@ -361,8 +362,26 @@ function EditClient() {
                       format="MM/dd/yyyy"
                       margin="normal"
                       label="Service end date"
-                      value={recordState.service_end_date}
-                      onChange={(e) => handleChangeDate(e, "service_end_date")}
+                      value={recordState.serviceEndDate}
+                      onChange={(e) => handleChangeDate(e, "serviceEndDate")}
+                      KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                      }}
+                    />
+                  </MuiPickersUtilsProvider>
+                </Grid>
+                <Grid item xs={1} />
+                <Grid item xs={12} sm={5}>
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                      disableToolbar
+                      variant="inline"
+                      className={classes.TextField}
+                      format="MM/dd/yyyy"
+                      margin="normal"
+                      label="Contract date"
+                      value={recordState.contractDate}
+                      onChange={(e) => handleChangeDate(e, "contractDate")}
                       KeyboardButtonProps={{
                         'aria-label': 'change date',
                       }}

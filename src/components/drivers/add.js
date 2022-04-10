@@ -13,7 +13,7 @@ import {
 import MuiAlert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { DRIVERS_ROUTE, VISA_TYPES, DRIVER_STATUS, SHIFT_TYPES, TRANSPORT_TYPES, IMAGES_DRIVERS_API_URL } from '../../constants/index';
+import { DRIVERS_ROUTE, VISA_TYPES, SHIFT_TYPES, TRANSPORT_TYPES, IMAGES_DRIVERS_API_URL } from '../../constants/index';
 import { addDriver } from '../../redux/drivers/Actions';
 import BaseUploadImage from '../Base/BaseUploadImage';
 // import BaseWaiting from '../Base/BaseWaiting';
@@ -120,8 +120,8 @@ function AddDriver() {
             encType="multipart/form-data">
             <BaseUploadImage
               IMAGES_URL={IMAGES_DRIVERS_API_URL}
-              smallName={recordState.status&&recordState.transport_type?recordState.transport_type + "-" +  recordState.status : ""}
-              bigName={recordState.first_name&&recordState.last_name ? recordState.first_name + " " +  recordState.last_name : ""}
+              smallName={recordState.status&&recordState.transportType?recordState.transportType + "-" +  recordState.status : ""}
+              bigName={recordState.firstName&&recordState.lastName ? recordState.firstName + " " +  recordState.lastName : ""}
               type="Add"
               image={recordState.image}
               setImage={setImage}
@@ -132,9 +132,9 @@ function AddDriver() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="first_name"
-                  value={recordState.first_name}
-                  name="first_name"
+                  fullWidth id="firstName"
+                  value={recordState.firstName}
+                  name="firstName"
                   required
                   label="First name"
                   onChange={(e) => handleChange(e)}/>
@@ -143,9 +143,9 @@ function AddDriver() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="middle_name"
-                  value={recordState.middle_name}
-                  name="middle_name"
+                  fullWidth id="middleName"
+                  value={recordState.middleName}
+                  name="middleName"
                   required
                   label="Middle name"
                   onChange={(e) => handleChange(e)}>
@@ -154,9 +154,9 @@ function AddDriver() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="last_name"
-                  value={recordState.last_name}
-                  name="last_name"
+                  fullWidth id="lastName"
+                  value={recordState.lastName}
+                  name="lastName"
                   required
                   label="Last name"
                   onChange={(e) => handleChange(e)}>
@@ -166,9 +166,9 @@ function AddDriver() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="nick_name"
-                  value={recordState.nick_name}
-                  name="nick_name"
+                  fullWidth id="nickName"
+                  value={recordState.nickName}
+                  name="nickName"
                   required
                   label="Nick name"
                   onChange={(e) => handleChange(e)}>
@@ -203,9 +203,9 @@ function AddDriver() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="civil_id"
-                  value={recordState.civil_id}
-                  name="civil_id"
+                  fullWidth id="civilId"
+                  value={recordState.civilId}
+                  name="civilId"
                   required
                   label="Civil id"
                   onChange={(e) => handleChange(e)}>
@@ -228,9 +228,9 @@ function AddDriver() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="work_hours"
-                  value={recordState.work_hours}
-                  name="work_hours"
+                  fullWidth id="workHours"
+                  value={recordState.workHours}
+                  name="workHours"
                   required
                   label="Work hours"
                   onChange={(e) => handleChange(e)}>
@@ -262,9 +262,9 @@ function AddDriver() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="experience_years"
-                  value={recordState.experience_years}
-                  name="experience_years"
+                  fullWidth id="experienceYears"
+                  value={recordState.experienceYears}
+                  name="experienceYears"
                   required
                   label="Experience years"
                   onChange={(e) => handleChange(e)}>
@@ -289,33 +289,14 @@ function AddDriver() {
                   variant="standard" fullWidth>
                   <InputLabel id="emirate-label">Visa type</InputLabel>
                   <Select
-                    id="visa_type"
-                    defaultValue={recordState.visa_type}
-                    value={recordState.visa_type}
-                    name="visa_type"
+                    id="visaType"
+                    defaultValue={recordState.visaType}
+                    value={recordState.visaType}
+                    name="visaType"
                     onChange={handleChange}
                     label="Visa type"
                   >
-                    {VISA_TYPES.map(type => (<MenuItem value={type}>{type}</MenuItem>))}
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={5}>
-                <FormControl
-                  className={classes.TextField}
-                  required
-                  variant="standard" fullWidth>
-                  <InputLabel id="emirate-label">Status</InputLabel>
-                  <Select
-                    id="status"
-                    required
-                    defaultValue={recordState.status}
-                    value={recordState.status}
-                    name="status"
-                    onChange={handleChange}
-                    label="Status"
-                  >
-                    {DRIVER_STATUS.map(status => (<MenuItem value={status}>{status}</MenuItem>))}
+                    {VISA_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
                   </Select>
                 </FormControl>
               </Grid>
@@ -327,18 +308,19 @@ function AddDriver() {
                   variant="standard" fullWidth>
                   <InputLabel id="emirate-label">Shift type</InputLabel>
                   <Select
-                    id="shift_type"
+                    id="shiftType"
                     required
-                    defaultValue={recordState.shift_type}
-                    value={recordState.shift_type}
-                    name="shift_type"
+                    defaultValue={recordState.shiftType}
+                    value={recordState.shiftType}
+                    name="shiftType"
                     onChange={handleChange}
                     label="Shift type"
                   >
-                    {SHIFT_TYPES.map(type => (<MenuItem value={type}>{type}</MenuItem>))}
+                    {SHIFT_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
                   </Select>
                 </FormControl>
               </Grid>
+              <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
                 <FormControl
                   className={classes.TextField}
@@ -346,15 +328,15 @@ function AddDriver() {
                   variant="standard" fullWidth>
                   <InputLabel id="emirate-label">Transport type</InputLabel>
                   <Select
-                    id="transport_type"
+                    id="transportType"
                     required
-                    defaultValue={recordState.transport_type}
-                    value={recordState.transport_type}
-                    name="transport_type"
+                    defaultValue={recordState.transportType}
+                    value={recordState.transportType}
+                    name="transportType"
                     onChange={handleChange}
                     label="Transport type"
                   >
-                    {TRANSPORT_TYPES.map(type => (<MenuItem value={type}>{type}</MenuItem>))}
+                    {TRANSPORT_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
                   </Select>
                 </FormControl>
               </Grid>
@@ -376,6 +358,7 @@ function AddDriver() {
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
+              <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
@@ -385,8 +368,8 @@ function AddDriver() {
                     format="MM/dd/yyyy"
                     margin="normal"
                     label="Start date"
-                    value={recordState.start_date}
-                    onChange={(e) => handleChangeDate(e, "start_date")}
+                    value={recordState.startDate}
+                    onChange={(e) => handleChangeDate(e, "startDate")}
                     KeyboardButtonProps={{
                       'aria-label': 'change date',
                     }}
@@ -403,14 +386,15 @@ function AddDriver() {
                     format="MM/dd/yyyy"
                     margin="normal"
                     label="End date"
-                    value={recordState.end_date}
-                    onChange={(e) => handleChangeDate(e, "end_date")}
+                    value={recordState.endDate}
+                    onChange={(e) => handleChangeDate(e, "endDate")}
                     KeyboardButtonProps={{
                       'aria-label': 'change date',
                     }}
                   />
                 </MuiPickersUtilsProvider>
               </Grid>
+              <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
@@ -420,8 +404,8 @@ function AddDriver() {
                     format="MM/dd/yyyy"
                     margin="normal"
                     label="Visa expiry date"
-                    value={recordState.visa_expiry_date}
-                    onChange={(e) => handleChangeDate(e, "visa_expiry_date")}
+                    value={recordState.visaExpiryDate}
+                    onChange={(e) => handleChangeDate(e, "visaExpiryDate")}
                     KeyboardButtonProps={{
                       'aria-label': 'change date',
                     }}

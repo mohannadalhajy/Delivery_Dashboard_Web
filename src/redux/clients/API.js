@@ -1,5 +1,5 @@
 const client = require ('../API_Client');
-const {CLIENTS_API_URL, UPLOAD_IMAGE_CLIENT_API_URL, COMPANIES_NAMES_API_URL, DELETE_ALL_CLIENTS_API_URL, DELETE_CLIENTS_API_URL, CLIENTS_ORDERS_API_URL} = require ('../../constants/index');
+const {CLIENTS_API_URL, UPLOAD_IMAGE_CLIENT_API_URL, COMPANIES_NAMES_API_URL, DELETE_ALL_CLIENTS_API_URL, DELETE_CLIENTS_API_URL, CLIENTS_ORDERS_API_URL, CLIENTS_CHARGES_API_URL} = require ('../../constants/index');
 //UPLOAD_IMAGE_API_URL, V_CARD_API_URL,EXPORT_EXCEL_API_URL, IMPORT_EXCEL_API_URL,DELETE_CLIENTS_API_URL, SEARCH_CLIENTS_API_URL
 export const get= ()=>
 {
@@ -20,6 +20,10 @@ export const getById= (id)=>
 export const getOrders= (id,page, take)=>
 {
     return client.getById(CLIENTS_ORDERS_API_URL,id+"?&page="+page+"&take="+take);
+}
+export const getCharges= (id,page, take)=>
+{
+    return client.getById(CLIENTS_CHARGES_API_URL,id+"?&page="+page+"&take="+take);
 }
 export const post= async(body)=>
 {

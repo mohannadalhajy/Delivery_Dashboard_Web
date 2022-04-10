@@ -121,7 +121,7 @@ const SERVER_ERRORS = [
     messageKey:'EMIRATE_EMPTY'
   },{
     code:'3011',
-    message:'City is empty',
+    message:'Address is empty',
     messageKey:'CITY_EMPTY'
   },{
     code:'3012',

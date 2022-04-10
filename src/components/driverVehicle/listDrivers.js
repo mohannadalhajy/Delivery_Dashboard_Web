@@ -91,7 +91,7 @@ function ListDriversVehicles({records}) {
                                 <TableCell
                                     align="left"
                                     className={classes.tableCell}>
-                                    {item.nick_name}
+                                    {item.nickName}
                                 </TableCell>
                                 <TableCell
                                     align="left"
@@ -104,11 +104,11 @@ function ListDriversVehicles({records}) {
                                 <TableCell
                                     className={classes.tableCell}
                                     align="left">
-                                    {item.start_date}</TableCell>
+                                    {item.startDate}</TableCell>
                                 <TableCell
                                     className={classes.tableCell}
                                     align="left">
-                                    {item.end_date?item.end_date:item.start_date?"Current":""}</TableCell>
+                                    {item.endDate?item.endDate:item.startDate?"Current":""}</TableCell>
 
                             </TableRow>
                         ))}

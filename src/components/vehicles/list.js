@@ -33,7 +33,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import IndeterminateCheckBoxIcon from '@material-ui/icons/IndeterminateCheckBox';
 import { Link } from 'react-router-dom';
-import { VEHICLE_DETAILS_ROUTE, EDIT_VEHICLE_ROUTE } from '../../constants/index';
+import { VEHICLE_DETAILS_ROUTE, EDIT_VEHICLE_ROUTE, TRANSPORT_TYPES, VEHICLES_SERVICE_TYPES } from '../../constants/index';
 
 import MenuItemDelete from '../Base/MenuItemDelete';
 import MenuItemExport from '../Base/MenuItemExport';
@@ -258,13 +258,13 @@ function ListVehicles() {
                                     className={classes.tableCell}
                                     component={Link}
                                     to={getDetailsRoute(item.id)}
-                                >{item.type}</TableCell>
+                                >{TRANSPORT_TYPES[item.type]}</TableCell>
                                 <TableCell
                                     align="left"
                                     className={classes.tableCell}
                                     component={Link}
                                     to={getDetailsRoute(item.id)}>
-                                    {item.service_type}</TableCell>
+                                    {VEHICLES_SERVICE_TYPES [item.serviceType]}</TableCell>
                                 <TableCell align="left" size='small' class="actions">
                                     <IconButton
                                         size="small"

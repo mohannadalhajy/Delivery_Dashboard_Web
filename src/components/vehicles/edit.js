@@ -187,7 +187,7 @@ function EditVehicle() {
                     onChange={handleChange}
                     label="Type"
                   >
-                    {TRANSPORT_TYPES.map(type => (<MenuItem value={type}>{type}</MenuItem>))}
+                    {TRANSPORT_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
                   </Select>
                 </FormControl>
               </Grid>
@@ -200,14 +200,14 @@ function EditVehicle() {
                   className={classes.InputLabel}>Service type</InputLabel>
                   <Select
                   className={classes.Select}
-                    id="service_type"
-                    defaultValue={recordState.service_type}
-                    value={recordState.service_type}
-                    name="service_type"
+                    id="serviceType"
+                    defaultValue={recordState.serviceType}
+                    value={recordState.serviceType}
+                    name="serviceType"
                     onChange={handleChange}
                     label="Service type"
                   >
-                    {VEHICLES_SERVICE_TYPES.map(type => (<MenuItem value={type}>{type}</MenuItem>))}
+                    {VEHICLES_SERVICE_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
                   </Select>
                 </FormControl>
                 
@@ -215,9 +215,9 @@ function EditVehicle() {
               <Grid item xs={12} sm={5}>
               <TextField
                   className={classes.TextField}
-                  fullWidth id="start_counter"
-                  value={recordState.start_counter}
-                  name="start_counter"
+                  fullWidth id="startCounter"
+                  value={recordState.startCounter}
+                  name="startCounter"
                   required
                   label="Start counter"
                   onChange={(e) => handleChange(e)}>
@@ -227,9 +227,9 @@ function EditVehicle() {
               <Grid item xs={12} sm={5}>
               <TextField
                   className={classes.TextField}
-                  fullWidth id="end_counter"
-                  value={recordState.end_counter}
-                  name="end_counter"
+                  fullWidth id="endCounter"
+                  value={recordState.endCounter}
+                  name="endCounter"
                   label="End counter"
                   onChange={(e) => handleChange(e)}>
                 </TextField>
@@ -249,11 +249,11 @@ function EditVehicle() {
               <Grid item xs={12} sm={5}>
               <TextField
                   className={classes.TextField}
-                  fullWidth id="rent_cost"
-                  value={recordState.rent_cost}
-                  name="rent_cost"
+                  fullWidth id="rentCost"
+                  value={recordState.rentCost}
+                  name="rentCost"
                   required
-                  disabled={!(recordState.service_type&&recordState.service_type===VEHICLES_SERVICE_TYPES[1])}
+                  disabled={!(recordState.serviceType&&recordState.serviceType===1)}
                   label="Rent cost"
                   onChange={(e) => handleChange(e)}>
                 </TextField>
@@ -267,8 +267,8 @@ function EditVehicle() {
                     format="MM/dd/yyyy"
                     margin="normal"
                     label="Start date"
-                    value={recordState.start_date}
-                    onChange={(e) => handleChangeDate(e, "start_date")}
+                    value={recordState.startDate}
+                    onChange={(e) => handleChangeDate(e, "startDate")}
                     KeyboardButtonProps={{
                       'aria-label': 'change date',
                     }}
@@ -286,8 +286,8 @@ function EditVehicle() {
                     format="MM/dd/yyyy"
                     margin="normal"
                     label="End date"
-                    value={recordState.end_date}
-                    onChange={(e) => handleChangeDate(e, "end_date")}
+                    value={recordState.endDate}
+                    onChange={(e) => handleChangeDate(e, "endDate")}
                     KeyboardButtonProps={{
                       'aria-label': 'change date',
                     }}

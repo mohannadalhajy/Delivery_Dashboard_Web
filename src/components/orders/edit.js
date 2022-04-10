@@ -13,12 +13,11 @@ import {
 import MuiAlert from '@material-ui/lab/Alert';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ORDER_DETAILS_ROUTE, ORDER_EMIRATES, ORDER_STATUS_TYPES, ORDER_TYPES, TRANSPORT_TYPES } from '../../constants/index';
+import { ADD_CUSTOMER_ROUTE, ORDER_DETAILS_ROUTE, ORDER_EMIRATES, ORDER_STATUS_TYPES, ORDER_TYPES, TRANSPORT_TYPES } from '../../constants/index';
 import { editOrder, initEditOrder } from '../../redux/orders/Actions';
 import BaseWaiting from '../Base/BaseWaiting';
-import PhoneInput from 'react-phone-number-input'
 import 'react-phone-number-input/style.css'
-
+const APICustomers = require('../../redux/customers/API');
 const APIOrder = require('../../redux/orders/API');
 const APIClient = require('../../redux/clients/API');
 const APIDriver = require('../../redux/drivers/API');
@@ -59,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
 function EditOrder() {
   const [clients, setClients] = useState([]);
   let history = useHistory();
@@ -77,16 +75,21 @@ function EditOrder() {
     message: "",
   });
   const [loading, setLoading] = useState(true)
-  //const [existFields,setExistFields] = useState([])
   const [isDisabled, setIsDisabled] = useState(true)
   const [recordState, setRecordState] = useState({});
-
+  const [customers, setCustomers] = useState([]);
   useEffect(() => {
     var str = location.search;
     var id = str.substring(1);
     const promise = APIOrder.getById(id);
     promise.then(res => {
       setRecordState(res.data.result)
+      const promise2 = APICustomers.getNames(res.data.result.clientId);
+      promise2.then((response) => {
+        setCustomers(response.data.result.result)
+      }).catch((error) => {
+        history.push(ADD_CUSTOMER_ROUTE)
+      });
       setLoading(false)
     }).catch(
       err => {
@@ -100,34 +103,37 @@ function EditOrder() {
     })
     promise.catch((error) => {
     });
-    const promiseDrivers = APIDriver.getFreeNames()
+    const promiseDrivers = APIDriver.getNames()
     promiseDrivers.then((response) => {
       setDrivers(response.data.result.result)
     }).catch((error) => {
       setDrivers([])
       console.log("error: ", error)
     });
-  }, [location, loading]);
-
-
+  }, [location, loading, history]);
   const SnackbarClose = () => {
     setSnackbarState({ ...SnackbarState, open: false })
   }
-
   const handleChange = (e) => {
     setRecordState({ ...recordState, [e.target.name]: e.target.value });
     setIsDisabled(false)
+    if (e.target.name === "clientId") {
+      const promise2 = APICustomers.getNames(e.target.value);
+      promise2.then((response) => {
+        setCustomers(response.data.result.result)
+      }).catch((error) => {
+        history.push(ADD_CUSTOMER_ROUTE)
+      });
+    }
   };
   const handleChangeType = (e) => {
     const type = e.target.value
-    setRecordState({ ...recordState, [e.target.name]: e.target.value, emirate: type === ORDER_TYPES[0] || type === ORDER_TYPES[2] ? ORDER_EMIRATES[0] : ORDER_EMIRATES[1] });
-    //setRecordState({ ...recordState, emirate: ORDER_EMIRATES[0] });
+    setRecordState({ ...recordState, [e.target.name]: e.target.value, emirate: type === 0 || type === 2 ? 0 : 1 });
     setIsDisabled(false)
   };
   const handleChangeEmirate = (e) => {
     const emirate = e.target.value
-    setRecordState({ ...recordState, [e.target.name]: e.target.value, transport_type: emirate === ORDER_EMIRATES[2] ? TRANSPORT_TYPES[1] : TRANSPORT_TYPES[0] });
-    //setRecordState({ ...recordState, emirate: ORDER_EMIRATES[0] });
+    setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 2 ? 1 : 0 });
     setIsDisabled(false)
   };
   const EditClick = (e) => {
@@ -140,12 +146,6 @@ function EditOrder() {
       "body": recordState
     }));
   }
-
-  const handleChangePhone = (e, name) => {
-    setRecordState({ ...recordState, [name]: e });
-    setIsDisabled(false)
-  };
-
   const moveToDetails = () => {
     history.push(ORDER_DETAILS_ROUTE + '?&id=' + recordState.id)
     dispatch(initEditOrder)
@@ -174,13 +174,13 @@ function EditOrder() {
                     variant="standard" fullWidth>
                     <InputLabel id="emirate-label">Company name</InputLabel>
                     <Select
-                      id="client_id"
+                      id="clientId"
                       required
-                      value={recordState.client_id}
-                      name="client_id"
+                      value={recordState.clientId}
+                      name="clientId"
                       onChange={handleChange}
                       label="Client name">
-                      {clients.map(client => (<MenuItem value={client.id}>{client.company_name}</MenuItem>))}
+                      {clients.map(client => (<MenuItem value={client.id}>{client.companyNameEnglish}</MenuItem>))}
                     </Select>
                   </FormControl>
                 </Grid>
@@ -210,46 +210,41 @@ function EditOrder() {
                 </Grid>
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
+                  {customers.length ? <FormControl
+                    className={classes.TextField}
+                    required
+                    variant="standard" fullWidth>
+                    <InputLabel id="emirate-label">Customer Name</InputLabel>
+                    <Select
+                      id="customerId"
+                      required
+                      value={recordState.customerId}
+                      name="customerId"
+                      onChange={handleChange}
+                      label="Customer Name">
+                      {customers.map(customer => (<MenuItem value={customer.id}>{customer.nameEnglish}</MenuItem>))}
+                    </Select>
+                  </FormControl> : <React.Fragment />}
+                </Grid>
+
+                <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
                     required
                     variant="standard" fullWidth>
                     <InputLabel id="emirate-label">Driver name</InputLabel>
                     <Select
-                      id="driver_id"
+                      id="driverId"
                       required
-                      value={recordState.driver_id}
-                      name="driver_id"
+                      value={recordState.driverId}
+                      name="driverId"
                       onChange={handleChange}
                       label="Driver name">
-                      {drivers.map(driver => (<MenuItem value={driver.id}>{driver.first_name + " " + driver.middle_name + " " + driver.last_name + " " + driver.nick_name}</MenuItem>))}
+                      {drivers.map(driver => (<MenuItem value={driver.id}>{driver.firstName + " " + driver.middleName + " " + driver.lastName + " " + driver.nickName}</MenuItem>))}
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="customer_name"
-                    value={recordState.customer_name}
-                    name="customer_name"
-                    required
-                    label="Customer Name"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-
                 <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <InputLabel id="emirate-label" className={classes.PhoneInput}>Customer phone</InputLabel>
-                  <PhoneInput
-                    className={classes.PhoneInput}
-                    required
-                    placeholder="Customer phone"
-                    name="customer_phone"
-                    defaultCountry="AE"
-                    value={recordState.customer_phone}
-                    onChange={(e) => handleChangePhone(e, "customer_phone")} />
-                </Grid>
                 <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
@@ -262,30 +257,31 @@ function EditOrder() {
                       name="type"
                       onChange={handleChangeType}
                       label="Type">
-                      {ORDER_TYPES.map(type => (<MenuItem value={type}>{type}</MenuItem>))}
+                      {ORDER_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
                     </Select>
                   </FormControl>
                 </Grid>
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
-                  {recordState.emirate && recordState.emirate !== ORDER_EMIRATES[2] ? <FormControl
+                  {recordState.emirate !== undefined && recordState.emirate !== 2 ? <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
-                    <InputLabel id="transport_type-label">Transport Type</InputLabel>
+                    <InputLabel id="transportType-label">Transport Type</InputLabel>
                     <Select
-                      id="transport_type"
+                      id="transportType"
                       required
-                      name="transport_type"
-                      value={recordState.transport_type}
-                      labelId={recordState.transport_type}
+                      name="transportType"
+                      value={recordState.transportType}
+                      labelId={recordState.transportType}
                       onChange={handleChange}
                       label="Transport Type">
-                      {TRANSPORT_TYPES.map(transport => (<MenuItem value={transport} labelId={transport}>{transport}</MenuItem>))}
+                      {TRANSPORT_TYPES.map((transport, index) => (<MenuItem value={index} labelId={transport}>{transport}</MenuItem>))}
                     </Select>
                   </FormControl> : <React.Fragment />}
                 </Grid>
+                <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
-                  {recordState.type && recordState.type !== ORDER_TYPES[0] ? <FormControl
+                  {recordState.type !== undefined && recordState.type !== 0 ? <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
                     <InputLabel id="emirate-label">Emirate</InputLabel>
@@ -298,12 +294,16 @@ function EditOrder() {
                       labelId={recordState.emirate}
                       onChange={handleChangeEmirate}
                       label="Emirate">
-                      {ORDER_EMIRATES.filter(emirate => recordState.type && ((recordState.type === ORDER_TYPES[1] && !(emirate === ORDER_EMIRATES[0] || emirate === ORDER_EMIRATES[2])) || (recordState.type === ORDER_TYPES[0] && emirate === ORDER_EMIRATES[0]) || recordState.type === ORDER_TYPES[2]))
-                        .map(emirate => (<MenuItem value={emirate} labelId={emirate}>{emirate}</MenuItem>))}
+                      {ORDER_EMIRATES
+                        .map((emirate, index) => (
+                          (emirate => recordState.type && ((recordState.type === 1 && !(emirate === 0 || emirate === 2)) || (recordState.type === 0 && emirate === 0) || recordState.type === 2)) ?
+                            <MenuItem value={index} labelId={emirate}>{emirate}</MenuItem>
+                            : <React.Fragment />
+                        ))}
                     </Select>
                   </FormControl> : <React.Fragment />}
                 </Grid>
-                <Grid xs={1} />
+                <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
@@ -318,10 +318,11 @@ function EditOrder() {
                       labelId={recordState.status}
                       onChange={handleChange}
                       label="Status">
-                      {ORDER_STATUS_TYPES.map(type => (<MenuItem value={type} labelId={type}>{type}</MenuItem>))}
+                      {ORDER_STATUS_TYPES.map(((type, index) => (<MenuItem value={index} labelId={type}>{type}</MenuItem>)))}
                     </Select>
                   </FormControl>
                 </Grid>
+                <Grid xs={1} />
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}

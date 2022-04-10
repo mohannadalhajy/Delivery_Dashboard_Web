@@ -12,7 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BaseWaiting from '../Base/BaseWaiting';
 import EditIcon from '@material-ui/icons/Edit';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
-import { EDIT_VEHICLE_ROUTE, VEHICLES_ROUTE } from '../../constants';
+import { EDIT_VEHICLE_ROUTE, TRANSPORT_TYPES, VEHICLES_ROUTE, VEHICLES_SERVICE_TYPES } from '../../constants';
 const API = require('../../redux/vehicles/API');
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -105,40 +105,40 @@ function VehicleDetails() {
               <div className={classes.labelDetails}><br />Name: {recordState.name}</div>
               : <div></div>}
 
-            {recordState.type ?
-              <div className={classes.labelDetails}><br />Type: {recordState.type}</div>
+            {recordState.type !== undefined ?
+              <div className={classes.labelDetails}><br />Type: {TRANSPORT_TYPES[recordState.type]}</div>
               : <div></div>}
-            {recordState.service_type ?
-              <div className={classes.labelDetails}><br />Service type: {recordState.service_type}</div>
+            {recordState.serviceType !== undefined ?
+              <div className={classes.labelDetails}><br />Service type: {VEHICLES_SERVICE_TYPES[recordState.type]}</div>
               : <div></div>}
 
-            {recordState.number !== null ?
+            {recordState.number !== undefined !== null ?
               <div className={classes.labelDetails}><br />Number: {recordState.number}</div>
               : <div></div>}
-            {recordState.model ?
+            {recordState.model !== undefined ?
               <div className={classes.labelDetails}><br />Model: {recordState.model}</div>
               : <div></div>}
-            {recordState.rent_cost && expand ?
-              <div className={classes.labelDetails}><br />Rent cost: {recordState.rent_cost}</div>
+            {recordState.rentCost !== undefined && expand && recordState.serviceType !== undefined && recordState.serviceType !== 0?
+              <div className={classes.labelDetails}><br />Rent cost: {recordState.rentCost}</div>
               : <div></div>}
-            {recordState.start_counter!==null && expand ?
-              <div className={classes.labelDetails}><br />Start counter: {recordState.start_counter}</div>
+            {recordState.startCounter !== null && expand ?
+              <div className={classes.labelDetails}><br />Start counter: {recordState.startCounter}</div>
               : <div></div>}
-            {recordState.end_counter!==null && expand ?
-              <div className={classes.labelDetails}><br />End counter: {recordState.end_counter}</div>
+            {recordState.endCounter !== null && expand ?
+              <div className={classes.labelDetails}><br />End counter: {recordState.endCounter}</div>
               : <div></div>}
-            {recordState.start_date && expand ?
-              <div className={classes.labelDetails}><br />Start date: {recordState.start_date}</div>
+            {recordState.startDate && expand ?
+              <div className={classes.labelDetails}><br />Start date: {recordState.startDate}</div>
               : <div></div>}
-            {recordState.end_date && expand ?
-              <div className={classes.labelDetails}><br />End date: {recordState.end_date}</div>
+            {recordState.endDate && expand ?
+              <div className={classes.labelDetails}><br />End date: {recordState.endDate}</div>
               : <div></div>}
           </div>
         </Grid>
         <Grid item xs={12}>
           <Link style={{ color: 'inherit', textDecoration: 'inherit', marginLeft: '12px' }} to={VEHICLES_ROUTE}>
             <Button startIcon={<FactCheckIcon />} className={classes.button1}>
-            Vehicles
+              Vehicles
             </Button>
           </Link>
           <Link style={{ color: 'inherit', textDecoration: 'inherit', marginLeft: '12px' }} to={EDIT_VEHICLE_ROUTE + '?' + recordState.id}>
