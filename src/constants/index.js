@@ -1,5 +1,5 @@
-export const BASEURL = 'http://localhost:3000';
-// export const BASEURL = 'http://nanospeed.eba-ycwmdmqb.us-east-2.elasticbeanstalk.com';
+//export const BASEURL = 'http://localhost:3000';
+export const BASEURL = 'http://nanospeed.eba-ycwmdmqb.us-east-2.elasticbeanstalk.com';
 const PREFIX = '/dashboard' 
 ///Auth
 export const AUTH_API_URL = BASEURL+'/auth';
@@ -127,7 +127,7 @@ export const DASHBOARD_ROUTE = PREFIX + '/dashboard'
 ////Cities
 export const EMIRATES = ["AD", "AJM", "FUJ", "SHJ", "DUBAI", "RAK", "UAQ", "AIN","WEST"]
 export const ORDER_EMIRATES = ["AJM", "SHJ", "DUBAI", "UAQ"]
-export const ORDER_TYPES = ["Internal","External","LPO"]
+// export const ORDER_TYPES = ["Internal","External","LPO"]
 export const TRANSPORT_TYPES = ["Motor","Car"]
 export const VEHICLES_SERVICE_TYPES = ["Owning","Rent"]
 export const VISA_TYPES = ["Visit", "Resident", "Loan"]

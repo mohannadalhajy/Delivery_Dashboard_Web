@@ -105,7 +105,7 @@ function ClientDetails() {
     })
     const chargesPromise = APIClient.getCharges(id, 1, countInPage)
     chargesPromise.then(response => {
-      const records = response.data.result.result.map(item => { return { ...item, checked: false } });
+      const records = response.data.result.records.map(item => { return { ...item, checked: false } });
       dispatch(getChargesSuccessAction({ ...response.data.result, records }));
     })
   }, [location, countInPage, dispatch]);
@@ -122,7 +122,7 @@ function ClientDetails() {
     if (take === undefined) take = countInPage;
     const promise = APIClient.getCharges(id, page, take)
     promise.then(response => {
-      const records = response.data.result.result.map(item => { return { ...item, checked: false } });
+      const records = response.data.result.records.map(item => { return { ...item, checked: false } });
       dispatch(getChargesSuccessAction({ ...response.data.result, records }));
     })
     setCurrPage(page)

@@ -13,7 +13,7 @@ import {
 import MuiAlert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_CUSTOMER_ROUTE, ORDERS_ROUTE, ORDER_EMIRATES, ORDER_TYPES, TRANSPORT_TYPES } from '../../constants/index';
+import { ADD_CUSTOMER_ROUTE, ORDERS_ROUTE, ORDER_EMIRATES, TRANSPORT_TYPES } from '../../constants/index';
 import { addOrder } from '../../redux/orders/Actions';
 // import BaseWaiting from '../Base/BaseWaiting';
 import 'react-phone-number-input/style.css'
@@ -96,18 +96,21 @@ function AddOrder() {
     if (e.target.name === "clientId") {
       const promise2 = APICustomers.getNames(e.target.value);
       promise2.then((response) => {
+        if (response.data.result.result.length === 0) {
+          history.push(ADD_CUSTOMER_ROUTE)
+        }
         setCustomers(response.data.result.result)
       }).catch((error) => {
         history.push(ADD_CUSTOMER_ROUTE)
       });
     }
   };
-  const handleChangeType = (e) => {
-    const type = e.target.value
-    setRecordState({ ...recordState, [e.target.name]: e.target.value, emirate: type === 0 || type === 2 ? 0 : 1 });
-    //setRecordState({ ...recordState, emirate: ORDER_EMIRATES[0] });
-    setIsDisabled(false)
-  };
+  // const handleChangeType = (e) => {
+  //   const type = e.target.value
+  //   setRecordState({ ...recordState, [e.target.name]: e.target.value, emirate: type === 0 || type === 2 ? 0 : 1 });
+  //   //setRecordState({ ...recordState, emirate: ORDER_EMIRATES[0] });
+  //   setIsDisabled(false)
+  // };
   const handleChangeEmirate = (e) => {
     const emirate = e.target.value
     setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 2 ? 1 : 0 });
@@ -181,7 +184,7 @@ function AddOrder() {
               </Grid>
               <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
-                {customers.length?<FormControl
+                {customers.length ? <FormControl
                   className={classes.TextField}
                   required
                   variant="standard" fullWidth>
@@ -195,24 +198,7 @@ function AddOrder() {
                     label="Customer Name">
                     {customers.map(customer => (<MenuItem value={customer.id}>{customer.nameEnglish}</MenuItem>))}
                   </Select>
-                </FormControl>:<React.Fragment/>}
-              </Grid>
-              <Grid item xs={1} />
-              <Grid item xs={12} sm={5}>
-                <FormControl
-                  className={classes.TextField}
-                  variant="standard" fullWidth>
-                  <InputLabel id="type-label">Type</InputLabel>
-                  <Select
-                    id="type"
-                    required
-                    value={recordState.type}
-                    name="type"
-                    onChange={handleChangeType}
-                    label="Type">
-                    {ORDER_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
-                  </Select>
-                </FormControl>
+                </FormControl> : <React.Fragment />}
               </Grid>
               <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
@@ -234,7 +220,7 @@ function AddOrder() {
               </Grid>
               <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
-                {recordState.type !== undefined && recordState.type !== 0 ? <FormControl
+                <FormControl
                   className={classes.TextField}
                   variant="standard" fullWidth>
                   <InputLabel id="emirate-label">Emirate</InputLabel>
@@ -248,10 +234,19 @@ function AddOrder() {
                     onChange={handleChangeEmirate}
                     label="Emirate">
                     {ORDER_EMIRATES
-                      .map((emirate,index) => ((recordState.type && ((recordState.type === 1 && !(emirate === 0 || emirate === 2)) || (recordState.type === 0 && emirate === 0) || recordState.type === 2))?
-                      <MenuItem value={index} labelId={emirate}>{emirate}</MenuItem>:<React.Fragment/>))}
+                      .map((emirate, index) => (
+                        // (recordState.type && 
+                        //   ((recordState.type === 1 && 
+                        //     !(emirate === 0 || emirate === 2)) 
+                        //     || 
+                        //     (recordState.type === 0 && emirate === 0) 
+                        //     || recordState.type === 2))
+                        //     ?
+                        <MenuItem value={index} labelId={emirate}>{emirate}</MenuItem>
+                        //:<React.Fragment/>
+                      ))}
                   </Select>
-                </FormControl> : <React.Fragment />}
+                </FormControl>
               </Grid>
               <Grid xs={12} />
               <Grid xs={12} sm={5} />

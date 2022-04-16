@@ -13,7 +13,7 @@ import {
 import MuiAlert from '@material-ui/lab/Alert';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_CUSTOMER_ROUTE, ORDER_DETAILS_ROUTE, ORDER_EMIRATES, ORDER_STATUS_TYPES, ORDER_TYPES, TRANSPORT_TYPES } from '../../constants/index';
+import { ADD_CUSTOMER_ROUTE, ORDER_DETAILS_ROUTE, ORDER_EMIRATES, ORDER_STATUS_TYPES, TRANSPORT_TYPES } from '../../constants/index';
 import { editOrder, initEditOrder } from '../../redux/orders/Actions';
 import BaseWaiting from '../Base/BaseWaiting';
 import 'react-phone-number-input/style.css'
@@ -126,11 +126,11 @@ function EditOrder() {
       });
     }
   };
-  const handleChangeType = (e) => {
-    const type = e.target.value
-    setRecordState({ ...recordState, [e.target.name]: e.target.value, emirate: type === 0 || type === 2 ? 0 : 1 });
-    setIsDisabled(false)
-  };
+  // const handleChangeType = (e) => {
+  //   const type = e.target.value
+  //   setRecordState({ ...recordState, [e.target.name]: e.target.value, emirate: type === 0 || type === 2 ? 0 : 1 });
+  //   setIsDisabled(false)
+  // };
   const handleChangeEmirate = (e) => {
     const emirate = e.target.value
     setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 2 ? 1 : 0 });
@@ -245,7 +245,7 @@ function EditOrder() {
                   </FormControl>
                 </Grid>
                 <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
+                {/* <Grid item xs={12} sm={5}>
                   <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
@@ -260,7 +260,7 @@ function EditOrder() {
                       {ORDER_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
                     </Select>
                   </FormControl>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
                   {recordState.emirate !== undefined && recordState.emirate !== 2 ? <FormControl
