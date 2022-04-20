@@ -13,7 +13,8 @@ import {
   ADD_CLIENT_ACCOUNT_ROUTE,
   CLIENTS_ACCOUNTS_ROUTE,
   ADD_DRIVER_ACCOUNT_ROUTE,
-  DRIVERS_ACCOUNTS_ROUTE
+  DRIVERS_ACCOUNTS_ROUTE,
+  MAPS_ROUTE
 } from '../../constants/index';
 import {
   Menu,
@@ -123,6 +124,19 @@ export default function SideBarContent({ classes }) {
             <PersonOutlineSharpIcon />
           </IconButton>
           Customers
+        </MenuItem>
+      </Link>
+
+      <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={MAPS_ROUTE}>
+        <MenuItem className={location.pathname === MAPS_ROUTE ? classes.clientsLink : ""}>
+          <IconButton
+            edge="start"
+            aria-label="menu"
+            className={classes.icon}
+          >
+            <PersonOutlineSharpIcon />
+          </IconButton>
+          Maps
         </MenuItem>
       </Link>
       {/* <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={VEHICLES_ROUTE}>
