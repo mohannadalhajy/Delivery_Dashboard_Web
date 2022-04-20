@@ -220,6 +220,18 @@ function AddCustomer() {
               </Grid>
               <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="location"
+                  value={recordState.location}
+                  name="location"
+                  required
+                  label="Location"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
                 <InputLabel id="emirate-label" className={classes.PhoneInput}>Phone</InputLabel>
                 <PhoneInput
                   className={classes.PhoneInput}
@@ -229,30 +241,6 @@ function AddCustomer() {
                   value={recordState.phone}
                   onChange={(e) => handleChangePhone(e, "phone")} />
               </Grid>
-              <Grid item xs={1} />
-              <Grid item xs={12} sm={5}>
-                <TextField
-                  className={classes.TextField}
-                  fullWidth id="latitude"
-                  value={recordState.latitude}
-                  name="latitude"
-                  required
-                  label="latitude"
-                  onChange={(e) => handleChange(e)}>
-                </TextField>
-              </Grid>
-              <Grid item xs={1} />
-              <Grid item xs={12} sm={5}>
-                <TextField
-                  className={classes.TextField}
-                  fullWidth id="longitude"
-                  value={recordState.longitude}
-                  name="longitude"
-                  required
-                  label="longitude"
-                  onChange={(e) => handleChange(e)}>
-                </TextField>
-              </Grid>
               <Grid xs={12}>
               </Grid>
             </Grid>
@@ -260,12 +248,9 @@ function AddCustomer() {
             <br />
             <br />
           </form>
-
         </Grid>
       </Grid>
     </div>
   );
 }
-
-
 export default AddCustomer;

@@ -1,6 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import SidebarContent from "./SidebarContent";
+import SidebarAdmin from "./SidebarAdmin";
+import SidebarStaff from "./SidebarStaff";
+import SidebarAccountant from "./SidebarAccountant";
+import { ROLES } from "../../constants";
+import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -41,5 +45,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function SideBar() {
   const classes = useStyles();
-  return (<SidebarContent classes={classes} />)
+  const AdminRole = ROLES[0]
+  const AccountantRole = ROLES[1]
+  const StaffRole = ROLES[2]
+  const User = useSelector(state => state.User)
+  if (User.user.role === AdminRole)
+    return <SidebarAdmin classes={classes} />
+  else if (User.user.role === AccountantRole)
+    return <SidebarAccountant classes={classes} />
+  else if (User.user.role === StaffRole)
+    return <SidebarStaff classes={classes} />
+  return <div></div>
 }

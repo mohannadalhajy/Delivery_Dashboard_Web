@@ -11,7 +11,6 @@ import {
   const initState = {
     loading: false, 
     drivers: [],
-    pageCount:1,
     count:0,
     selectedCount:0,
     error: ""
@@ -30,7 +29,6 @@ import {
           return {
               loading: false,
               drivers: action.payload.drivers,
-              pageCount:action.payload.pageCount,
               count:action.payload.count,
               selectedCount:0,
               error: "",
@@ -92,7 +90,6 @@ import {
             return {
               loading: false, 
               drivers: [],
-              pageCount:1,
               count:0,
               selectedCount:0,
               error: ""

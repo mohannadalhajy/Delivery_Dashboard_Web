@@ -174,11 +174,34 @@ function AddOrder() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="address"
-                  value={recordState.address}
-                  name="address"
+                  fullWidth id="addressEnglish"
+                  value={recordState.addressEnglish}
+                  name="addressEnglish"
                   required
-                  label="Address"
+                  label="Address english"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="addressArabic"
+                  value={recordState.addressArabic}
+                  name="addressArabic"
+                  required
+                  label="Address arabic"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="location"
+                  value={recordState.location}
+                  name="locatoin"
+                  required
+                  label="Location"
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>

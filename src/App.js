@@ -30,6 +30,7 @@ import {
   EDIT_DRIVER_ROUTE, 
   EDIT_ORDER_ROUTE, 
   LOGIN_ROUTE, 
+  MAPS_ROUTE, 
   ORDERS_ROUTE, 
   ORDER_DETAILS_ROUTE, 
   PREFIX_ROUTE  
@@ -54,6 +55,7 @@ const driversAccounts = loadable(() => import('./components/driversAccounts'));
 const editDriverAccount = loadable(() => import('./components/driversAccounts/edit'));
 const addDriverAccount = loadable(() => import('./components/driversAccounts/add'));
 const drivers = loadable(() => import('./components/drivers'));
+const maps = loadable(() => import('./components/maps'));
 const customers = loadable(() => import('./components/customers'));
 const addCustomer = loadable(() => import('./components/customers/add'));
 const driverDetails = loadable(() => import('./components/drivers/details'));
@@ -144,6 +146,7 @@ function App() {
                 <AuthRoute path={EDIT_DRIVER_ROUTE} component={editDriver} />
                 <AuthRoute path={DRIVER_DETAILS_ROUTE} component={driverDetails} />
                 <AuthRoute path={DRIVERS_ROUTE} component={drivers} />
+                <AuthRoute path={MAPS_ROUTE} component={maps} />
                 
 
                 {/* <AuthRoute path={ADD_VEHICLE_ROUTE} component={addVehicle} />

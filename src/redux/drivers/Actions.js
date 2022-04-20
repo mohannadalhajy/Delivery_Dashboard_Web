@@ -46,13 +46,9 @@ export const addDriverFailureAction = (error) => {
 
 export const getDrivers = body => async (dispatch, getState) => {
     dispatch(getDriversRequestAction());
-
-    if (!body.page || body.page <= 0) body.page = 1
-    if (!body.take || body.take <= 0) body.take = 50
-    const promise = API.getByPage(body.page,body.take);
-
+    const promise = API.get();
     promise.then((response) => {
-        const drivers = response.data.result.result.map(item => {return { ...item, checked: false }});
+        const drivers = response.data.result.drivers.map(item => {return { ...item, checked: false }});
         dispatch(getDriversSuccessAction({...response.data.result,drivers:drivers}));
     })
     promise.catch((error) => {

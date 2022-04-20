@@ -215,7 +215,6 @@ function ListDrivers() {
                                 <TableCell align="left">name</TableCell>
                                 <TableCell align="left">Shift type</TableCell>
                                 <TableCell align="left">Status</TableCell>
-                                <TableCell align="left">Transport type</TableCell>
                                 <TableCell align="left" size='small'></TableCell>
                                 <TableCell align="right" size='small'></TableCell>
                             </TableRow>
@@ -270,12 +269,6 @@ function ListDrivers() {
                                     component={Link}
                                     to={getDetailsRoute(item.id)}>
                                     {DRIVER_STATUS[item.status]}</TableCell>
-                                <TableCell
-                                    className={classes.tableCell}
-                                    align="left"
-                                    component={Link}
-                                    to={getDetailsRoute(item.id)}>
-                                    {TRANSPORT_TYPES[item.transportType]}</TableCell>
                                 <TableCell align="left" size='small' class="actions">
                                     <IconButton
                                         size="small"

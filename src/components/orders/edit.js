@@ -261,7 +261,6 @@ function EditOrder() {
                     </Select>
                   </FormControl>
                 </Grid> */}
-                <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
                   {recordState.emirate !== undefined && recordState.emirate !== 2 ? <FormControl
                     className={classes.TextField}

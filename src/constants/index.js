@@ -1,5 +1,5 @@
 //export const BASEURL = 'http://localhost:3000';
-export const BASEURL = 'http://nanospeed.eba-ycwmdmqb.us-east-2.elasticbeanstalk.com';
+export const BASEURL = 'http://9e4fe1a.online-server.cloud';
 const PREFIX = '/dashboard' 
 ///Auth
 export const AUTH_API_URL = BASEURL+'/auth';
@@ -101,6 +101,8 @@ export const DRIVERS_ROUTE = PREFIX + '/drivers';
 export const DRIVER_DETAILS_ROUTE = PREFIX + '/driverDetails';
 export const EDIT_DRIVER_ROUTE = PREFIX + '/editDrivers';
 export const ADD_DRIVER_ROUTE = PREFIX + '/addDriver';
+export const MAPS_ROUTE = PREFIX + '/maps';
+
 ////vehicles route
 export const VEHICLES_ROUTE = PREFIX + '/vehicles';
 export const VEHICLE_DETAILS_ROUTE = PREFIX + '/vehicleDetails';
@@ -134,3 +136,4 @@ export const VISA_TYPES = ["Visit", "Resident", "Loan"]
 export const DRIVER_STATUS = ["Busy", "Available", "Unavailable"]
 export const SHIFT_TYPES = ["Morning", "Evening", "Night"]
 export const ORDER_STATUS_TYPES = ["Waiting list", "Canceled","On progress", "Waiting driver", "In progress", "Deliverd", "Failed"]
+export const ROLES = ["Admin", "Accountant", "Staff"]
