@@ -148,7 +148,6 @@ export const editOrderDriver = options => async (dispatch, getState) =>{
     promise.then(
         res => {
             dispatch({ type: FETCH_EDIT_ORDER, payload: res.data.result })
-            dispatch({ type: 'DeleteOrder', payload: id })
         }
     ).catch(err=>{
         let errorMsg = "Error"
