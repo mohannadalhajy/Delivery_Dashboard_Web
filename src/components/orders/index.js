@@ -50,6 +50,12 @@ const Orders = () => {
     dispatch(getOrders({ page, take, type: ordersType }));
     setCurrPage(page);
     setCountInPage(take);
+    let myInterval = setInterval(() => {
+    dispatch(getOrders({ page, take, type: ordersType }));
+      }, 30 * 1000)
+      return () => {
+        clearInterval(myInterval);
+      };
   }
   useEffect(() => {
     setOrders()
