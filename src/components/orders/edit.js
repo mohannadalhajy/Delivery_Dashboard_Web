@@ -200,11 +200,34 @@ function EditOrder() {
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
-                    fullWidth id="address"
-                    value={recordState.address}
-                    name="address"
+                    fullWidth id="addressEnglish"
+                    value={recordState.addressEnglish}
+                    name="addressEnglish"
                     required
-                    label="Address"
+                    label="Address english"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                <Grid item xs={1} />
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="addressArabic"
+                    value={recordState.addressArabic}
+                    name="addressArabic"
+                    required
+                    label="Address arabic"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="location"
+                    value={recordState.location}
+                    name="location"
+                    required
+                    label="Location"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
@@ -235,7 +258,6 @@ function EditOrder() {
                     <InputLabel id="emirate-label">Driver name</InputLabel>
                     <Select
                       id="driverId"
-                      required
                       value={recordState.driverId}
                       name="driverId"
                       onChange={handleChange}
@@ -328,8 +350,18 @@ function EditOrder() {
                     fullWidth id="points"
                     value={recordState.points}
                     name="points"
-                    required
                     label="points"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                <Grid xs={1} />
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
+                    fullWidth id="distance"
+                    value={recordState.distance}
+                    name="distance"
+                    label="distance"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>

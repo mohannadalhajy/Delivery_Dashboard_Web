@@ -287,6 +287,7 @@ function ListOrders({ clientOrders }) {
                 <TableCell align="left">Points</TableCell>
                 <TableCell align="left">Emirate</TableCell>
                 <TableCell align="left">Status</TableCell>
+                <TableCell align="left">Period</TableCell>
                 <TableCell align="left" size='small'></TableCell>
                 <TableCell align="right" size='small'></TableCell>
               </TableRow>
@@ -356,6 +357,12 @@ function ListOrders({ clientOrders }) {
                   component={Link}
                   to={getDetailsRoute(item.id)}>
                   {ORDER_STATUS_TYPES[item.status]}</TableCell>
+                <TableCell
+                  className={classes.tableCell}
+                  align="left"
+                  component={Link}
+                  to={getDetailsRoute(item.id)}>
+                  {item.period}</TableCell>
                 <TableCell align="left" size='small' class="actions">
                   <IconButton
                     size="small"

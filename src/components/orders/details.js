@@ -118,7 +118,7 @@ function OrderDetails() {
             {order.emirate !== undefined ?
               <div className={classes.labelDetails}><br />Emirate: {ORDER_EMIRATES[order.emirate]}</div>
               : <div></div>}
-            {order.transportType !== undefined&& expand ?
+            {order.transportType !== undefined && expand ?
               <div className={classes.labelDetails}><br />Transport type: {TRANSPORT_TYPES[order.transportType]}</div>
               : <div></div>}
             {order.type && expand ?
@@ -135,6 +135,12 @@ function OrderDetails() {
               : <div></div>}
             {order.address && expand ?
               <div className={classes.labelDetails}><br />Customer address: {order.address}</div>
+              : <div></div>}
+            {order.reason && expand ?
+              <div className={classes.labelDetails}><br />Reason: {order.reason}</div>
+              : <div></div>}
+            {order.distance && expand ?
+              <div className={classes.labelDetails}><br />Distance: {order.distance}</div>
               : <div></div>}
             {order.startDate && expand ?
               <div className={classes.labelDetails}><br />Start date: {order.startDate}</div>
