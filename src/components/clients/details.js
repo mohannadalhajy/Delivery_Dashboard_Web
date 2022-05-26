@@ -199,11 +199,10 @@ function ClientDetails() {
               {client.serviceEndDate && expand ?
                 <div className={classes.labelDetails}><br />Service end date: {client.serviceEndDate}</div>
                 : <div></div>}
-              {client.latitude && expand ?
-                <div className={classes.labelDetails}><br />Latitude: {client.latitude}</div>
-                : <div></div>}
-              {client.longitude && expand ?
-                <div className={classes.labelDetails}><br />Longitude: {client.longitude}</div>
+              {client.latitude && client.longitude && expand ?
+                <div className={classes.labelDetails}><br />
+                  http://www.google.com/maps/place/{client.latitude},{client.longitude}
+                </div>
                 : <div></div>}
               {expand && client.notes ? client.notes
                 : <div></div>}

@@ -362,7 +362,7 @@ function ListOrders({ clientOrders }) {
                   align="left"
                   component={Link}
                   to={getDetailsRoute(item.id)}>
-                  {item.period}</TableCell>
+                  {item.period} min</TableCell>
                 <TableCell align="left" size='small' class="actions">
                   <IconButton
                     size="small"

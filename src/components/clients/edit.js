@@ -24,6 +24,9 @@ import {
   MuiPickersUtilsProvider
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import MapPicker from 'react-google-map-picker'
+const DefaultLocation = { lat: 25.399146989223475, lng: 55.50567730126954 };
+const DefaultZoom = 13;
 const APIClient = require('../../redux/clients/API');
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,7 +81,20 @@ function EditClient() {
   //const [existFields,setExistFields] = useState([])
   const [isDisabled, setIsDisabled] = useState(true)
   const [recordState, setRecordState] = useState({});
+  const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
+  const [zoom, setZoom] = useState(DefaultZoom);
 
+  const handleChangeLocation = (latitude, longitude) => {
+    setRecordState({ ...recordState, latitude, longitude });
+  }
+
+  const handleChangeZoom = (newZoom) => {
+    setZoom(newZoom);
+  }
+  const handleResetLocation = () => {
+    setDefaultLocation({ ...DefaultLocation });
+    setZoom(DefaultZoom);
+  }
   useEffect(() => {
     var str = location.search;
     var id = str.substring(1);
@@ -168,7 +184,7 @@ function EditClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                <Grid item xs={0} sm={1}/>
+                <Grid item xs={0} sm={1} />
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
@@ -191,25 +207,17 @@ function EditClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                <Grid item xs={0} sm={1}/>
-
+                <Grid item xs={0} sm={1} />
                 <Grid item xs={12} sm={5}>
-                  <FormControl
+                  <TextField
                     className={classes.TextField}
-                    variant="standard" fullWidth>
-                    <InputLabel id="emirate-label">Emirate</InputLabel>
-                    <Select
-                      id="emirate"
-                      required
-                      defaultValue={recordState.emirate}
-                      value={recordState.emirate}
-                      name="emirate"
-                      onChange={handleChange}
-                      label="Emirate"
-                    >
-                      {emirates.map((emirate, index) => (<MenuItem value={index}>{emirate}</MenuItem>))}
-                    </Select>
-                  </FormControl>
+                    fullWidth id="password"
+                    value={recordState.password}
+                    name="password"
+                    required
+                    label="password"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
                 </Grid>
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
@@ -223,7 +231,7 @@ function EditClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                <Grid item xs={0} sm={1}/>
+                <Grid item xs={0} sm={1} />
 
                 <Grid item xs={12} sm={5}>
                   <TextField
@@ -236,10 +244,10 @@ function EditClient() {
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
-                
+
                 <Grid item xs={1} />
-                
-                
+
+
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
@@ -265,20 +273,9 @@ function EditClient() {
                 </Grid>
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
-                <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
+                  <InputLabel id="emirate-label" className={classes.PhoneInput}>Company phone</InputLabel>
                   <PhoneInput
-                  className={classes.PhoneInput}
-                    placeholder="Client phone"
-                    name="clientPhone"
-                    defaultCountry="AE"
-                    value={recordState.clientPhone}
-                    onChange={(e) => handleChangePhone(e, "clientPhone")} />
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                <InputLabel id="emirate-label" className={classes.PhoneInput}>Company phone</InputLabel>
-                  <PhoneInput
-                  className={classes.PhoneInput}
+                    className={classes.PhoneInput}
                     placeholder="Company phone"
                     name="companyPhone"
                     defaultCountry="AE"
@@ -287,29 +284,15 @@ function EditClient() {
                 </Grid>
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="latitude"
-                    value={recordState.latitude}
-                    name="latitude"
-                    required
-                    label="latitude"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
+                  <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
+                  <PhoneInput
+                    className={classes.PhoneInput}
+                    placeholder="Client phone"
+                    name="clientPhone"
+                    defaultCountry="AE"
+                    value={recordState.clientPhone}
+                    onChange={(e) => handleChangePhone(e, "clientPhone")} />
                 </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="longitude"
-                    value={recordState.longitude}
-                    name="longitude"
-                    required
-                    label="longitude"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
                   <TextField
@@ -333,6 +316,27 @@ function EditClient() {
                     label="Company type arabic"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
+                </Grid>
+
+                <Grid item xs={0} sm={1} />
+
+                <Grid item xs={12} sm={5}>
+                  <FormControl
+                    className={classes.TextField}
+                    variant="standard" fullWidth>
+                    <InputLabel id="emirate-label">Emirate</InputLabel>
+                    <Select
+                      id="emirate"
+                      required
+                      defaultValue={recordState.emirate}
+                      value={recordState.emirate}
+                      name="emirate"
+                      onChange={handleChange}
+                      label="Emirate"
+                    >
+                      {emirates.map((emirate, index) => (<MenuItem value={index}>{emirate}</MenuItem>))}
+                    </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>
@@ -392,6 +396,15 @@ function EditClient() {
                 </Grid>
               </Grid>
               <br />
+              <button onClick={handleResetLocation}>Reset Location</button>
+              <MapPicker defaultLocation={defaultLocation}
+                zoom={zoom}
+                mapTypeId="roadmap"
+                style={{ height: '700px' }}
+                onChangeLocation={handleChangeLocation}
+                onChangeZoom={handleChangeZoom}
+                apiKey='AIzaSyDVFvurJK6PyxOgj9jS54HDa6lvSbUlJfI' />
+
               <br />
               <br />
             </form>

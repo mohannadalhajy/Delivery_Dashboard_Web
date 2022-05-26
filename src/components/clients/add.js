@@ -24,6 +24,9 @@ import {
   MuiPickersUtilsProvider
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import MapPicker from 'react-google-map-picker'
+const DefaultLocation = { lat: 25.399146989223475, lng: 55.50567730126954 };
+const DefaultZoom = 13;
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "0 40px",
@@ -70,12 +73,19 @@ function AddClient() {
   });
   //const [existFields,setExistFields] = useState([])
   const [isDisabled, setIsDisabled] = useState(true)
-  const [recordState, setRecordState] = useState({
-    
-  });
-
- 
-
+  const [recordState, setRecordState] = useState({});
+  const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
+  const [zoom, setZoom] = useState(DefaultZoom);
+  const handleChangeLocation = (latitude, longitude) => {
+    setRecordState({ ...recordState, latitude, longitude });
+  }
+  const handleChangeZoom = (newZoom) => {
+    setZoom(newZoom);
+  }
+  const handleResetLocation = () => {
+    setDefaultLocation({ ...DefaultLocation });
+    setZoom(DefaultZoom);
+  }
   const SnackbarClose = () => {
     setSnackbarState({ ...SnackbarState, open: false })
   }
@@ -107,281 +117,269 @@ function AddClient() {
 
   return (
     <div className={classes.root}>
-        <Grid container direction="row" justify="center" alignItems="stretch" className={classes.first}>
-          <Grid item xs={12}>
-            {clientsLength !== clients.clients.length ? history.push(CLIENTS_ROUTE) : <div></div>}
-            <Snackbar open={SnackbarState.open && (clients.loading || clients.error !== "")} anchorOrigin={{ vertical: SnackbarState.vertical, horizontal: SnackbarState.horizontal }} autoHideDuration={6000} >
-              <Alert onClose={SnackbarClose} severity={clients.error ? "error" : "info"}>
-                {clients.error ? clients.error : "Please Wait"}
-              </Alert>
-            </Snackbar>
-            <form
-              component="fieldset"
-              onSubmit={(e) => addClick(e)}
-              encType="multipart/form-data">
-              <BaseUploadImage
-                IMAGES_URL={IMAGES_CLIENTS_API_URL}
-                smallName={recordState.companyNameEnglish}
-                bigName={recordState.clientNameEnglish}
-                type="Add"
-                image={recordState.image}
-                setImage={setImage}
-                isDisabled={isDisabled}
-              />
-              <Divider variant="middle" />
-              <Grid container>
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="companyNameEnglish"
-                    value={recordState.companyNameEnglish}
-                    name="companyNameEnglish"
-                    required
-                    label="Company name english"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={0} sm={1}/>
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="companyNameArabic"
-                    value={recordState.companyNameArabic}
-                    name="companyNameArabic"
-                    required
-                    label="Company name arabic"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="userName"
-                    value={recordState.userName}
-                    name="userName"
-                    required
-                    label="userName"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="password"
-                    value={recordState.password}
-                    name="password"
-                    required
-                    label="Password"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="clientNameEnglish"
-                    value={recordState.clientNameEnglish}
-                    name="clientNameEnglish"
-                    required
-                    label="Client name english"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="clientNameArabic"
-                    value={recordState.clientNameArabic}
-                    name="clientNameArabic"
-                    required
-                    label="Client name arabic"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <FormControl
-                    className={classes.TextField}
-                    variant="standard" fullWidth>
-                    <InputLabel id="emirate-label">Emirate</InputLabel>
-                    <Select
-                      id="emirate"
-                      required
-                      defaultValue={recordState.emirate}
-                      value={recordState.emirate}
-                      name="emirate"
-                      onChange={handleChange}
-                      label="Emirate"
-                    >
-                      {emirates.map((emirate, index) => (<MenuItem value={index}>{emirate}</MenuItem>))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={1} />
-                
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="addressEnglish"
-                    value={recordState.addressEnglish}
-                    name="addressEnglish"
-                    required
-                    label="Address english"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="addressArabic"
-                    value={recordState.addressArabic}
-                    name="addressArabic"
-                    required
-                    label="Address arabic"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
-                  <PhoneInput
-                  className={classes.PhoneInput}
-                    placeholder="Client phone"
-                    name="clientPhone"
-                    defaultCountry="AE"
-                    value={recordState.clientPhone}
-                    onChange={(e) => handleChangePhone(e, "clientPhone")} />
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                <InputLabel id="emirate-label" className={classes.PhoneInput}>Company phone</InputLabel>
-                  <PhoneInput
-                  className={classes.PhoneInput}
-                    placeholder="Company phone"
-                    name="companyPhone"
-                    defaultCountry="AE"
-                    value={recordState.companyPhone}
-                    onChange={(e) => handleChangePhone(e, "companyPhone")} />
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="latitude"
-                    value={recordState.latitude}
-                    name="latitude"
-                    required
-                    label="latitude"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="longitude"
-                    value={recordState.longitude}
-                    name="longitude"
-                    required
-                    label="longitude"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="companyTypeEnglish"
-                    value={recordState.companyTypeEnglish}
-                    name="companyTypeEnglish"
-                    required
-                    label="Company type english"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="companyTypeArabic"
-                    value={recordState.companyTypeArabic}
-                    name="companyTypeArabic"
-                    required
-                    label="Company type arabic"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      disableToolbar
-                      className={classes.TextField}
-                      variant="inline"
-                      format="MM/dd/yyyy"
-                      margin="normal"
-                      label="Service start date"
-                      value={recordState.serviceStartDate}
-                      onChange={(e) => handleChangeDate(e, "serviceStartDate")}
-                      KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                    />
-                  </MuiPickersUtilsProvider>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      className={classes.TextField}
-                      disableToolbar
-                      variant="inline"
-                      format="MM/dd/yyyy"
-                      margin="normal"
-                      label="Service end date"
-                      value={recordState.serviceEndDate}
-                      onChange={(e) => handleChangeDate(e, "serviceEndDate")}
-                      KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                    />
-                  </MuiPickersUtilsProvider>
-                </Grid>
-                <Grid item xs={1} />
-
-                <Grid item xs={12} sm={5}>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      disableToolbar
-                      variant="inline"
-                      className={classes.TextField}
-                      format="MM/dd/yyyy"
-                      margin="normal"
-                      label="Contract date"
-                      value={recordState.contractDate}
-                      onChange={(e) => handleChangeDate(e, "contractDate")}
-                      KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                    />
-                  </MuiPickersUtilsProvider>
-                </Grid>
-                <Grid xs={12}>
-                </Grid>
+      <Grid container direction="row" justify="center" alignItems="stretch" className={classes.first}>
+        <Grid item xs={12}>
+          {clientsLength !== clients.clients.length ? history.push(CLIENTS_ROUTE) : <div></div>}
+          <Snackbar open={SnackbarState.open && (clients.loading || clients.error !== "")} anchorOrigin={{ vertical: SnackbarState.vertical, horizontal: SnackbarState.horizontal }} autoHideDuration={6000} >
+            <Alert onClose={SnackbarClose} severity={clients.error ? "error" : "info"}>
+              {clients.error ? clients.error : "Please Wait"}
+            </Alert>
+          </Snackbar>
+          <form
+            component="fieldset"
+            onSubmit={(e) => addClick(e)}
+            encType="multipart/form-data">
+            <BaseUploadImage
+              IMAGES_URL={IMAGES_CLIENTS_API_URL}
+              smallName={recordState.companyNameEnglish}
+              bigName={recordState.clientNameEnglish}
+              type="Add"
+              image={recordState.image}
+              setImage={setImage}
+              isDisabled={isDisabled}
+            />
+            <Divider variant="middle" />
+            <Grid container>
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="companyNameEnglish"
+                  value={recordState.companyNameEnglish}
+                  name="companyNameEnglish"
+                  required
+                  label="Company name english"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
               </Grid>
-              <br />
-              <br />
-              <br />
-            </form>
+              <Grid item xs={0} sm={1} />
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="companyNameArabic"
+                  value={recordState.companyNameArabic}
+                  name="companyNameArabic"
+                  required
+                  label="Company name arabic"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="userName"
+                  value={recordState.userName}
+                  name="userName"
+                  required
+                  label="userName"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
 
-          </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="password"
+                  value={recordState.password}
+                  name="password"
+                  required
+                  label="Password"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="clientNameEnglish"
+                  value={recordState.clientNameEnglish}
+                  name="clientNameEnglish"
+                  required
+                  label="Client name english"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="clientNameArabic"
+                  value={recordState.clientNameArabic}
+                  name="clientNameArabic"
+                  required
+                  label="Client name arabic"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="addressEnglish"
+                  value={recordState.addressEnglish}
+                  name="addressEnglish"
+                  required
+                  label="Address english"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="addressArabic"
+                  value={recordState.addressArabic}
+                  name="addressArabic"
+                  required
+                  label="Address arabic"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+
+              <Grid item xs={1} />
+
+              <Grid item xs={12} sm={5}>
+                <InputLabel id="emirate-label" className={classes.PhoneInput}>Company phone</InputLabel>
+                <PhoneInput
+                  className={classes.PhoneInput}
+                  placeholder="Company phone"
+                  name="companyPhone"
+                  defaultCountry="AE"
+                  value={recordState.companyPhone}
+                  onChange={(e) => handleChangePhone(e, "companyPhone")} />
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <InputLabel id="emirate-label" className={classes.PhoneInput}>Client phone</InputLabel>
+                <PhoneInput
+                  className={classes.PhoneInput}
+                  placeholder="Client phone"
+                  name="clientPhone"
+                  defaultCountry="AE"
+                  value={recordState.clientPhone}
+                  onChange={(e) => handleChangePhone(e, "clientPhone")} />
+              </Grid>
+              <Grid item xs={1} />
+
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="companyTypeEnglish"
+                  value={recordState.companyTypeEnglish}
+                  name="companyTypeEnglish"
+                  required
+                  label="Company type english"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="companyTypeArabic"
+                  value={recordState.companyTypeArabic}
+                  name="companyTypeArabic"
+                  required
+                  label="Company type arabic"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <FormControl
+                  className={classes.TextField}
+                  variant="standard" fullWidth>
+                  <InputLabel id="emirate-label">Emirate</InputLabel>
+                  <Select
+                    id="emirate"
+                    required
+                    defaultValue={recordState.emirate}
+                    value={recordState.emirate}
+                    name="emirate"
+                    onChange={handleChange}
+                    label="Emirate"
+                  >
+                    {emirates.map((emirate, index) => (<MenuItem value={index}>{emirate}</MenuItem>))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    className={classes.TextField}
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    label="Service start date"
+                    value={recordState.serviceStartDate}
+                    onChange={(e) => handleChangeDate(e, "serviceStartDate")}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    className={classes.TextField}
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    label="Service end date"
+                    value={recordState.serviceEndDate}
+                    onChange={(e) => handleChangeDate(e, "serviceEndDate")}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+              <Grid item xs={1} />
+
+              <Grid item xs={12} sm={5}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    className={classes.TextField}
+                    format="MM/dd/yyyy"
+                    margin="normal"
+                    label="Contract date"
+                    value={recordState.contractDate}
+                    onChange={(e) => handleChangeDate(e, "contractDate")}
+                    KeyboardButtonProps={{
+                      'aria-label': 'change date',
+                    }}
+                  />
+                </MuiPickersUtilsProvider>
+              </Grid>
+              <Grid xs={12}>
+              </Grid>
+            </Grid>
+
+            <br />
+            <button onClick={handleResetLocation}>Reset Location</button>
+              <MapPicker defaultLocation={defaultLocation}
+                zoom={zoom}
+                mapTypeId="roadmap"
+                style={{ height: '700px' }}
+                onChangeLocation={handleChangeLocation}
+                onChangeZoom={handleChangeZoom}
+                apiKey='AIzaSyDVFvurJK6PyxOgj9jS54HDa6lvSbUlJfI' />
+
+            <br />
+            <br />
+          </form>
+
         </Grid>
+      </Grid>
     </div>
   );
 }
