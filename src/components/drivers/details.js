@@ -136,6 +136,9 @@ function DriverDetails() {
               {recordState.userName && expand ?
                 <div className={classes.labelDetails}><br />User name: {recordState.userName}</div>
                 : <div></div>}
+              {recordState.password && expand ?
+                <div className={classes.labelDetails}><br />Password: {recordState.password}</div>
+                : <div></div>}
               {recordState.address && expand ?
                 <div className={classes.labelDetails}><br />Address: {recordState.address}</div>
                 : <div></div>}

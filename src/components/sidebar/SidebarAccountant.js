@@ -13,7 +13,8 @@ import {
   ADD_CLIENT_ACCOUNT_ROUTE,
   CLIENTS_ACCOUNTS_ROUTE,
   ADD_DRIVER_ACCOUNT_ROUTE,
-  DRIVERS_ACCOUNTS_ROUTE
+  DRIVERS_ACCOUNTS_ROUTE,
+  ADD_DRIVER_ROUTE
 } from '../../constants/index';
 import {
   Menu,
@@ -46,6 +47,13 @@ export default function SideBarContent({ classes }) {
         <MenuItem>
           <Button startIcon={<AddIcon />} className={classes.button1}>
             Add Client
+          </Button>
+        </MenuItem>
+      </Link>
+      <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_DRIVER_ROUTE}>
+        <MenuItem>
+          <Button startIcon={<AddIcon />} className={classes.button1}>
+            Add Driver
           </Button>
         </MenuItem>
       </Link>

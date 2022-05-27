@@ -121,7 +121,7 @@ function AddDriver() {
             <BaseUploadImage
               IMAGES_URL={IMAGES_DRIVERS_API_URL}
               smallName={recordState.status&&recordState.transportType?recordState.transportType + "-" +  recordState.status : ""}
-              bigName={recordState.firstName&&recordState.lastName ? recordState.firstName + " " +  recordState.lastName : ""}
+              bigName={recordState.firstName&&recordState.lastName ? recordState.firstName + (recordState.middleName?" "+recordState.middleName+" ":" ") +  recordState.lastName : ""}
               type="Add"
               image={recordState.image}
               setImage={setImage}

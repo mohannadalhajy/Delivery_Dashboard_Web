@@ -169,6 +169,9 @@ function ClientDetails() {
               {client.userName ?
                 <div className={classes.labelDetails}><br />User name: {client.userName}</div>
                 : <div></div>}
+              {client.password ?
+                <div className={classes.labelDetails}><br />Password: {client.password}</div>
+                : <div></div>}
               {client.emirate ?
                 <div className={classes.labelDetails}><br />Emirate: {EMIRATES[client.emirate]}</div>
                 : <div></div>}
