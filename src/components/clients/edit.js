@@ -83,9 +83,10 @@ function EditClient() {
   const [recordState, setRecordState] = useState({});
   const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
   const [zoom, setZoom] = useState(DefaultZoom);
+  const [mapLocation, setMapLocation] = useState(DefaultLocation);
 
   const handleChangeLocation = (latitude, longitude) => {
-    setRecordState({ ...recordState, latitude, longitude });
+    setMapLocation({ latitude, longitude });
   }
 
   const handleChangeZoom = (newZoom) => {
@@ -130,7 +131,7 @@ function EditClient() {
     var pos = str.substring(1);
     dispatch(editClient({
       "id": pos,
-      "body": recordState
+      "body": {...recordState, latitude: mapLocation.latitude, longitude: mapLocation.longitude }
     }));
   }
 
