@@ -6,7 +6,9 @@ import {
     FETCH_ADD_ORDER,
     FETCH_EDIT_ORDER,
     FETCH_INIT_EDIT_ORDER,
-    FETCH_DELETE_ALL_ORDERS_SUCCESS
+    FETCH_DELETE_ALL_ORDERS_SUCCESS,
+    FETCH_ENABLE_ORDERS,
+    FETCH_DISABLE_ORDERS
 } from './ActionTypes'
 import getErrorMessage from "../../Errors";
 const API = require ('./API');
@@ -46,7 +48,6 @@ export const addOrderFailureAction = (error) => {
 
 export const getOrders = body => async (dispatch, getState) => {
     dispatch(getOrdersRequestAction());
-
     if (!body.page || body.page <= 0) body.page = 1
     if (!body.take || body.take <= 0) body.take = 50
     const promise = API.getByPage(body.page,body.take, body.type);
@@ -156,8 +157,12 @@ export const editOrderDriver = options => async (dispatch, getState) =>{
         dispatch(addOrderFailureAction(errorMsg));
     });
 };
-
-
+export const disableOrders=body=>(dispatch, getState)=> {
+    dispatch({ type: FETCH_DISABLE_ORDERS, payload: {} }) 
+}
+export const enableOrders=body=>(dispatch, getState) =>{
+    dispatch({ type: FETCH_ENABLE_ORDERS, payload: {} }) 
+}
 export async function initEditOrder(dispatch, getState) {
     dispatch({ type: FETCH_INIT_EDIT_ORDER, payload: "" }) 
 }
