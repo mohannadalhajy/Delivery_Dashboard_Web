@@ -77,7 +77,7 @@ function AddClient() {
   const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
   const [zoom, setZoom] = useState(DefaultZoom);
   const handleChangeLocation = (latitude, longitude) => {
-    setRecordState({ ...recordState, latitude, longitude });
+    setRecordState({ ...recordState, latitude: latitude, longitude: longitude });
   }
   const handleChangeZoom = (newZoom) => {
     setZoom(newZoom);
