@@ -65,7 +65,7 @@ const MapContainer = ({ google }) => {
           //   lng: 55.513619+index-1
           // }}
           icon={{
-            url: `${process.env.PUBLIC_URL + '/motorcycle.jpeg'}`,
+            // url: `${process.env.PUBLIC_URL + '/motorcycle.jpeg'}`,
             anchor: new google.maps.Point(32, 32),
             scaledSize: new google.maps.Size(64, 64)
           }}
@@ -76,10 +76,11 @@ const MapContainer = ({ google }) => {
       ))}
       {clients.clients?.filter(driver => driver.latitude && driver.longitude).map((client, index) => (
         <Marker
+        // icon={'http://maps.google.com/mapfiles/kml/paddle/blu-blank.png'}
           icon={{
-            url: `${process.env.PUBLIC_URL + '/restaurant.jpeg'}`,
-            anchor: new google.maps.Point(32, 32),
-            scaledSize: new google.maps.Size(64, 64)
+            url: 'http://maps.google.com/mapfiles/kml/paddle/blu-blank.png',
+            anchor: new google.maps.Point(24, 24),
+            scaledSize: new google.maps.Size(48, 48)
           }}
           position={{ lat: client.latitude, lng: client.longitude }}
           onClick={onMarkerClick}
