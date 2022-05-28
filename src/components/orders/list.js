@@ -4,7 +4,9 @@ import {
   selectOrder,
   SelectAll,
   deleteOrder,
-  editOrderDriver
+  editOrderDriver,
+  enableOrders,
+  disableOrders
 } from '../../redux/orders/Actions';
 import {
   makeStyles,
@@ -199,6 +201,7 @@ function ListOrders({ clientOrders }) {
 
   const handleChooseDriver = () => {
     setChooseDriver(true);
+    dispatch(disableOrders())
     const promiseDrivers = APIDriver.getNames(ItemId)
     setWaitingDriver(true)
     promiseDrivers.then((response) => {
@@ -213,6 +216,7 @@ function ListOrders({ clientOrders }) {
 
   const handleCloseChooseDriver = () => {
     setChooseDriver(false);
+    dispatch(enableOrders())
   };
   const toggleSelectALL = (checkType) => {
     dispatch(SelectAll(checkType))
