@@ -52,7 +52,7 @@ const Orders = () => {
     setCountInPage(take);
     let myInterval = setInterval(() => {
     dispatch(getOrders({ page, take, type: ordersType }));
-      }, 30 * 1000)
+      }, 5 * 1000)
       return () => {
         clearInterval(myInterval);
       };
