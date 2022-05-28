@@ -75,9 +75,10 @@ function AddClient() {
   const [isDisabled, setIsDisabled] = useState(true)
   const [recordState, setRecordState] = useState({});
   const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
+  const [location, setLocation] = useState(DefaultLocation);
   const [zoom, setZoom] = useState(DefaultZoom);
   const handleChangeLocation = (latitude, longitude) => {
-    setRecordState({ ...recordState, latitude: latitude, longitude: longitude });
+    setLocation({ latitude, longitude });
   }
   const handleChangeZoom = (newZoom) => {
     setZoom(newZoom);
@@ -106,7 +107,7 @@ function AddClient() {
   const addClick = (e) => {
     e.preventDefault();
     setSnackbarState({ ...SnackbarState, open: true })
-    dispatch(addClient(recordState));
+    dispatch(addClient({...recordState, latitude: location.latitude, longitude: location.longitude }));
   }
 
   const setImage = (image) => {
@@ -366,23 +367,19 @@ function AddClient() {
 
             <br />
             <button onClick={handleResetLocation}>Reset Location</button>
-              <MapPicker defaultLocation={defaultLocation}
-                zoom={zoom}
-                mapTypeId="roadmap"
-                style={{ height: '700px' }}
-                onChangeLocation={handleChangeLocation}
-                onChangeZoom={handleChangeZoom}
-                apiKey='AIzaSyDVFvurJK6PyxOgj9jS54HDa6lvSbUlJfI' />
-
+            <MapPicker defaultLocation={defaultLocation}
+              zoom={zoom}
+              mapTypeId="roadmap"
+              style={{ height: '700px' }}
+              onChangeLocation={handleChangeLocation}
+              onChangeZoom={handleChangeZoom}
+              apiKey='AIzaSyDVFvurJK6PyxOgj9jS54HDa6lvSbUlJfI' />
             <br />
             <br />
           </form>
-
         </Grid>
       </Grid>
     </div>
   );
 }
-
-
 export default AddClient;
