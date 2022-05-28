@@ -106,9 +106,6 @@ function DriverDetails() {
               {recordState.firstName ?
                 <div className={classes.labelDetails}><br />First name: {recordState.firstName}</div>
                 : <div></div>}
-              {recordState.middleName && expand ?
-                <div className={classes.labelDetails}><br />Middle name: {recordState.middleName}</div>
-                : <div></div>}
               {recordState.lastName ?
                 <div className={classes.labelDetails}><br />Last name: {recordState.lastName}</div>
                 : <div></div>}
@@ -153,9 +150,6 @@ function DriverDetails() {
                 : <div></div>}
               {recordState.civilId && expand ?
                 <div className={classes.labelDetails}><br />Civil id: {recordState.civilId}</div>
-                : <div></div>}
-              {recordState.birthdate && expand ?
-                <div className={classes.labelDetails}><br />Birthdate: {recordState.birthdate}</div>
                 : <div></div>}
               {recordState.serviceStartDate && expand ?
                 <div className={classes.labelDetails}><br />Start date: {recordState.serviceStartDate}</div>

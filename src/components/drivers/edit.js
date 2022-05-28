@@ -166,17 +166,6 @@ function EditDriver() {
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
-                    fullWidth id="middleName"
-                    value={recordState.middleName}
-                    name="middleName"
-                    required
-                    label="Middle name"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
                     fullWidth id="lastName"
                     value={recordState.lastName}
                     name="lastName"
@@ -201,6 +190,18 @@ function EditDriver() {
                 <Grid item xs={12} sm={5}>
                   <TextField
                     className={classes.TextField}
+                    fullWidth id="civilId"
+                    value={recordState.civilId}
+                    name="civilId"
+                    required
+                    label="Civil id"
+                    onChange={(e) => handleChange(e)}>
+                  </TextField>
+                </Grid>
+                <Grid item xs={1} />
+                <Grid item xs={12} sm={5}>
+                  <TextField
+                    className={classes.TextField}
                     fullWidth id="userName"
                     value={recordState.userName}
                     name="userName"
@@ -218,19 +219,6 @@ function EditDriver() {
                     name="password"
                     required
                     label="Password"
-                    onChange={(e) => handleChange(e)}>
-                  </TextField>
-                </Grid>
-                <Grid item xs={1} />
-
-                <Grid item xs={12} sm={5}>
-                  <TextField
-                    className={classes.TextField}
-                    fullWidth id="civilId"
-                    value={recordState.civilId}
-                    name="civilId"
-                    required
-                    label="Civil id"
                     onChange={(e) => handleChange(e)}>
                   </TextField>
                 </Grid>
@@ -385,24 +373,6 @@ function EditDriver() {
                       {TRANSPORT_TYPES.map((type, index) => (<MenuItem value={index}>{type}</MenuItem>))}
                     </Select>
                   </FormControl>
-                </Grid>
-                <Grid item xs={1} />
-                <Grid item xs={12} sm={5}>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <KeyboardDatePicker
-                      disableToolbar
-                      variant="inline"
-                      className={classes.TextField}
-                      format="MM/dd/yyyy"
-                      margin="normal"
-                      label="Birthdate"
-                      value={recordState.birthdate}
-                      onChange={(e) => handleChangeDate(e, "birthdate")}
-                      KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                      }}
-                    />
-                  </MuiPickersUtilsProvider>
                 </Grid>
                 <Grid item xs={1} />
                 <Grid item xs={12} sm={5}>

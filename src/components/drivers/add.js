@@ -121,7 +121,7 @@ function AddDriver() {
             <BaseUploadImage
               IMAGES_URL={IMAGES_DRIVERS_API_URL}
               smallName={recordState.status&&recordState.transportType?recordState.transportType + "-" +  recordState.status : ""}
-              bigName={recordState.firstName&&recordState.lastName ? recordState.firstName + (recordState.middleName?" "+recordState.middleName+" ":" ") +  recordState.lastName : ""}
+              bigName={recordState.firstName&&recordState.lastName ? recordState.firstName + " " + recordState.lastName : ""}
               type="Add"
               image={recordState.image}
               setImage={setImage}
@@ -143,17 +143,6 @@ function AddDriver() {
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
-                  fullWidth id="middleName"
-                  value={recordState.middleName}
-                  name="middleName"
-                  required
-                  label="Middle name"
-                  onChange={(e) => handleChange(e)}>
-                </TextField>
-              </Grid>
-              <Grid item xs={12} sm={5}>
-                <TextField
-                  className={classes.TextField}
                   fullWidth id="lastName"
                   value={recordState.lastName}
                   name="lastName"
@@ -171,6 +160,18 @@ function AddDriver() {
                   name="nickName"
                   required
                   label="Nick name"
+                  onChange={(e) => handleChange(e)}>
+                </TextField>
+              </Grid>
+              <Grid item xs={1} />
+              <Grid item xs={12} sm={5}>
+                <TextField
+                  className={classes.TextField}
+                  fullWidth id="civilId"
+                  value={recordState.civilId}
+                  name="civilId"
+                  required
+                  label="Civil id"
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
@@ -200,18 +201,6 @@ function AddDriver() {
                 </TextField>
               </Grid>
               <Grid item xs={1} />
-              <Grid item xs={12} sm={5}>
-                <TextField
-                  className={classes.TextField}
-                  fullWidth id="civilId"
-                  value={recordState.civilId}
-                  name="civilId"
-                  required
-                  label="Civil id"
-                  onChange={(e) => handleChange(e)}>
-                </TextField>
-              </Grid>
-              <Grid item xs={1} />
 
               <Grid item xs={12} sm={5}>
                 <TextField
@@ -224,6 +213,7 @@ function AddDriver() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
+              <Grid item xs={1} />
 
               <Grid item xs={12} sm={5}>
                 <TextField
@@ -248,6 +238,7 @@ function AddDriver() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
+              <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
                 <TextField
                   className={classes.TextField}
@@ -270,6 +261,7 @@ function AddDriver() {
                   onChange={(e) => handleChange(e)}>
                 </TextField>
               </Grid>
+              <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
                 <InputLabel id="emirate-label" className={classes.PhoneInput}>Phone number</InputLabel>
                 <PhoneInput
@@ -345,24 +337,6 @@ function AddDriver() {
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <KeyboardDatePicker
                     disableToolbar
-                    variant="inline"
-                    className={classes.TextField}
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    label="Birthdate"
-                    value={recordState.birthdate}
-                    onChange={(e) => handleChangeDate(e, "birthdate")}
-                    KeyboardButtonProps={{
-                      'aria-label': 'change date',
-                    }}
-                  />
-                </MuiPickersUtilsProvider>
-              </Grid>
-              <Grid item xs={1} />
-              <Grid item xs={12} sm={5}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
                     className={classes.TextField}
                     variant="inline"
                     format="MM/dd/yyyy"
@@ -370,24 +344,6 @@ function AddDriver() {
                     label="Start date"
                     value={recordState.startDate}
                     onChange={(e) => handleChangeDate(e, "startDate")}
-                    KeyboardButtonProps={{
-                      'aria-label': 'change date',
-                    }}
-                  />
-                </MuiPickersUtilsProvider>
-              </Grid>
-              <Grid item xs={1} />
-              <Grid item xs={12} sm={5}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    className={classes.TextField}
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    label="End date"
-                    value={recordState.endDate}
-                    onChange={(e) => handleChangeDate(e, "endDate")}
                     KeyboardButtonProps={{
                       'aria-label': 'change date',
                     }}

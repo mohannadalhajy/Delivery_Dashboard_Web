@@ -24,7 +24,7 @@ const MapContainer = ({ google }) => {
     let myInterval = setInterval(() => {
     dispatch(getDrivers({}));
 
-    }, 30 * 1000)
+    }, 5 * 1000)
     return () => {
       clearInterval(myInterval);
     };
