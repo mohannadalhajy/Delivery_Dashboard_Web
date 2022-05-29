@@ -102,6 +102,7 @@ function EditClient() {
     const promise = APIClient.getById(id);
     promise.then(res => {
       setRecordState(res.data.result)
+      setMapLocation({ latitude:res.data.result.latitude, longitude: res.data.result.longitude })
       setLoading(false)
     }).catch(
       err => {
