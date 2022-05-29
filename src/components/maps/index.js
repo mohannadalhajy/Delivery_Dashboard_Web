@@ -93,7 +93,7 @@ const MapContainer = ({ google }) => {
         onClose={onClose}
       >
         <div>
-          <h4>{state.selectedPlace.name}</h4>
+          <h4>{state.selectedPlace?.name}</h4>
         </div>
       </InfoWindow>
     </Map>
