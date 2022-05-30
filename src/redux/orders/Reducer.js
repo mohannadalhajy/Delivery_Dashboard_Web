@@ -26,7 +26,7 @@ const OrderReducer = (state = initState, action) => {
       if(!state.enabled) return state
       return {
         ...state,
-        loading: true,
+        loading: false,
         error: "",
       };
     }
