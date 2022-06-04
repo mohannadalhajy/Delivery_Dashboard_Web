@@ -36,11 +36,15 @@ import {
   PREFIX_ROUTE  
 } from './constants';
 import { getClients } from './redux/clients/Actions';
-// import messaging from "./FirebaseConf";
+import messaging from "./FirebaseConf";
 
-// messaging.onMessage(payload=>{
-//   console.log("Notification\n",payload)
-// })
+try {
+  messaging.onMessage(payload=>{
+    console.log("Notification\n",payload)
+  })
+} catch (err) {
+  console.error('Failed to initialize Firebase Messaging', err);
+}
 
 const login = loadable(() => import('./components/profile/login'));
 const clients = loadable(() => import('./components/clients'));
