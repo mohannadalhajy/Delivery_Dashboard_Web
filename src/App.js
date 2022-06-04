@@ -36,11 +36,11 @@ import {
   PREFIX_ROUTE  
 } from './constants';
 import { getClients } from './redux/clients/Actions';
-import messaging from "./FirebaseConf";
+// import messaging from "./FirebaseConf";
 
-messaging.onMessage(payload=>{
-  console.log("Notification\n",payload)
-})
+// messaging.onMessage(payload=>{
+//   console.log("Notification\n",payload)
+// })
 
 const login = loadable(() => import('./components/profile/login'));
 const clients = loadable(() => import('./components/clients'));
