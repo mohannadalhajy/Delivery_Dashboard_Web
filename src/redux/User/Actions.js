@@ -10,8 +10,8 @@ import {
     FETCH_INIT_EDIT_PROFILE,
     FETCH_INIT_PROFILE
 } from "./ActionTypes";
-import messaging from '../../FirebaseConf'
-import { getToken } from "firebase/messaging";
+// import messaging from '../../FirebaseConf'
+// import { getToken } from "firebase/messaging";
 
 const clientAuth = require('./API');
 
@@ -37,7 +37,7 @@ export const loginFailureAction = (error) => {
 
 export const login = body => async (dispatch, getState) => {
     dispatch(loginRequestAction());
-    const firebaseToken = await getToken(messaging, { vapidKey: 'BGKxsZKcTHGI08qArtUOAdlxa12Og_DpMJ6JjKnWQIGuH-i7sKpMGAbj1icCAUJUlEln_b-W0-8IvPEqJwxyHyk' })
+    const firebaseToken = ""//await getToken(messaging, { vapidKey: 'BGKxsZKcTHGI08qArtUOAdlxa12Og_DpMJ6JjKnWQIGuH-i7sKpMGAbj1icCAUJUlEln_b-W0-8IvPEqJwxyHyk' })
     ///2NpOjFNyHGNSCTithmeXIG-JGsZkxIfsA-7NUXQ28Zs
     console.log("firebaseToken",firebaseToken)
     const promise = clientAuth.login({...body, firebaseToken});
