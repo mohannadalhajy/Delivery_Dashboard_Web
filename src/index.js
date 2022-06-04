@@ -8,16 +8,16 @@ import { Provider } from 'react-redux';
 // import { registerServiceWorker } from './serviceWorker';
 store.subscribe(() => console.log(store.getState()));
 
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register(`${process.env.PUBLIC_URL + '/firebase-messaging-sw.js'}`)
-    .then(function(registration) {
-      console.log("Registration successful, scope is:", registration.scope);
-    })
-    .catch(function(err) {
-      console.log("Service worker registration failed, error:", err);
-    });
-}
+// if ("serviceWorker" in navigator) {
+//   navigator.serviceWorker
+//     .register(`${process.env.PUBLIC_URL + '/firebase-messaging-sw.js'}`)
+//     .then(function(registration) {
+//       console.log("Registration successful, scope is:", registration.scope);
+//     })
+//     .catch(function(err) {
+//       console.log("Service worker registration failed, error:", err);
+//     });
+// }
 
 
 ReactDOM.render(
