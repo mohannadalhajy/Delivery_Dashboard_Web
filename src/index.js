@@ -6,6 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import store from './store';
 import { Provider } from 'react-redux';
 // import { registerServiceWorker } from './serviceWorker';
+import messaging from "./FirebaseConf";
+
+messaging.onMessage(payload=>{
+  console.log("Notification\n",payload)
+  let audio = new Audio(`${process.env.PUBLIC_URL + '/audio.mkv'}`)
+
+    audio.play()
+})
 store.subscribe(() => console.log(store.getState()));
 
 // if ("serviceWorker" in navigator) {
