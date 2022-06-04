@@ -21,11 +21,13 @@ store.subscribe(() => console.log(store.getState()));
 
 
 ReactDOM.render(
+  <React.StrictMode>
     <React.Suspense fallback="Loading...">
       <Provider store={store}>
         <App />
       </Provider>
-    </React.Suspense>,
+    </React.Suspense>
+    </React.StrictMode>,
   document.getElementById('root')
 );
 
