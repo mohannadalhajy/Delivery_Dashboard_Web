@@ -10,6 +10,12 @@ const firebaseConfig = {
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+while(!firebase){
+  console.log("rrrrrrrr")
+}
+while(!firebase.messaging()){
+  console.log("rrrrrrrr2")
+}
 const messaging = firebase.messaging();
 // const messaging = firebase.messaging();
 

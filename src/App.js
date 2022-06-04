@@ -36,14 +36,14 @@ import {
   PREFIX_ROUTE  
 } from './constants';
 import { getClients } from './redux/clients/Actions';
-// import messaging from "./FirebaseConf";
+import messaging from "./FirebaseConf";
 
-// messaging.onMessage(payload=>{
-//   console.log("Notification\n",payload)
-//   let audio = new Audio(`${process.env.PUBLIC_URL + '/audio.mkv'}`)
+messaging.onMessage(payload=>{
+  console.log("Notification\n",payload)
+  let audio = new Audio(`${process.env.PUBLIC_URL + '/audio.mkv'}`)
 
-//     audio.play()
-// })
+    audio.play()
+})
 
 const login = loadable(() => import('./components/profile/login'));
 const clients = loadable(() => import('./components/clients'));
