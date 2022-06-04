@@ -9,13 +9,6 @@ const firebaseConfig = {
     appId: "1:202365528516:android:9af69bce9902c6350edc91",
   };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-while(!firebase){
-  console.log("rrrrrrrr")
-}
-while(!firebase.messaging()){
-  console.log("rrrrrrrr2")
-}
 const messaging = firebase.messaging();
 // const messaging = firebase.messaging();
 
