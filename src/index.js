@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
 import { Provider } from 'react-redux';
-import { registerServiceWorker } from './serviceWorker';
+// import { registerServiceWorker } from './serviceWorker';
 store.subscribe(() => console.log(store.getState()));
 
 // if ("serviceWorker" in navigator) {

@@ -10,12 +10,7 @@ const firebaseConfig = {
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-let messaging;
-try {
-    messaging = firebase.messaging();
-} catch (err) {
-    console.error('Failed to initialize Firebase Messaging', err);
-}
+const messaging = firebase.messaging();
 // const messaging = firebase.messaging();
 
 export default messaging;

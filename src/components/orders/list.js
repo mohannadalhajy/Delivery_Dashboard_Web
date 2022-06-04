@@ -320,7 +320,7 @@ function ListOrders({ clientOrders }) {
                     inputProps={{ 'aria-label': 'primary checkbox' }} />
                 </TableCell>
                 <TableCell size='small' padding='checkbox' class={item.checked ? "hideImage" : "image"}>
-                  <Avatar className={colors[(item.companyNameEnglish ? encode(item.companyNameEnglish) : item.emirate !== undefined ? encode(item.emirate) : 0) % colors.length]}>{item.companyNameEnglish ? item.companyNameEnglish[0] : item.emirate ? item.emirate[0] : ""}</Avatar>
+                  <Avatar className={colors[(item.companyNameEnglish ? encode(item.companyNameEnglish) : item.emirate !== undefined ? encode(item.emirate) : 0) % colors.length]}>{item.id}</Avatar>
                 </TableCell>
 
                 {!clientOrders ? <TableCell
