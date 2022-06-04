@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
 import { Provider } from 'react-redux';
-// import { registerServiceWorker } from './serviceWorker';
+import { registerServiceWorker } from './serviceWorker';
 import messaging from "./FirebaseConf";
 
 messaging.onMessage(payload=>{
@@ -38,6 +38,7 @@ ReactDOM.render(
     </React.StrictMode>,
   document.getElementById('root')
 );
+registerServiceWorker();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
