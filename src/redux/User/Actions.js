@@ -39,8 +39,7 @@ export const login = body => async (dispatch, getState) => {
     dispatch(loginRequestAction());
     // const firebaseToken = await getToken(messaging, { vapidKey: 'BGKxsZKcTHGI08qArtUOAdlxa12Og_DpMJ6JjKnWQIGuH-i7sKpMGAbj1icCAUJUlEln_b-W0-8IvPEqJwxyHyk' })
     ///2NpOjFNyHGNSCTithmeXIG-JGsZkxIfsA-7NUXQ28Zs
-    console.log("firebaseToken",firebaseToken)
-    const promise = clientAuth.login({...body, firebaseToken});
+    const promise = clientAuth.login(body);
     promise.then((response) => {
         const result = response.data.result;
         localStorage.setItem("accessToken", result.accessToken);
