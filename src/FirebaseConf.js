@@ -1,13 +1,15 @@
 import firebase from 'firebase/compat/app';
 import "firebase/compat/messaging"
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('../firebase-messaging-sw.js')
-    .then(function (registration) {
-      console.log('Registration successful, scope is:', registration.scope);
-    }).catch(function (err) {
-      console.log('Service worker registration failed, error:', err);
-    });
-}
+importScripts('https://www.gstatic.com/firebasejs/9.8.2/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/9.8.2/firebase-messaging-compat.js');
+// if ('serviceWorker' in navigator) {
+//   navigator.serviceWorker.register('../firebase-messaging-sw.js')
+//     .then(function (registration) {
+//       console.log('Registration successful, scope is:', registration.scope);
+//     }).catch(function (err) {
+//       console.log('Service worker registration failed, error:', err);
+//     });
+// }
 const firebaseConfig = {
   apiKey: "AIzaSyDVFvurJK6PyxOgj9jS54HDa6lvSbUlJfI",
   authDomain: "sinbad-delivery.firebaseapp.com",
