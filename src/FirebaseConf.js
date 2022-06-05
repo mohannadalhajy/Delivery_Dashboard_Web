@@ -1,13 +1,5 @@
-import firebase from 'firebase/compat/app';
-import "firebase/compat/messaging"
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('../firebase-messaging-sw.js')
-    .then(function (registration) {
-      console.log('Registration successful, scope is:', registration.scope);
-    }).catch(function (err) {
-      console.log('Service worker registration failed, error:', err);
-    });
-}
+import firebase from 'firebase/app';
+import "firebase/messaging"
 const firebaseConfig = {
   apiKey: "AIzaSyDVFvurJK6PyxOgj9jS54HDa6lvSbUlJfI",
   authDomain: "sinbad-delivery.firebaseapp.com",

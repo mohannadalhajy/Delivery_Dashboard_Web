@@ -1,8 +1,8 @@
 // Give the service worker access to Firebase Messaging.
 // Note that you can only use Firebase Messaging here. Other Firebase libraries
 // are not available in the service worker.
-importScripts('http://www.gstatic.com/firebasejs/9.8.2/firebase-app-compat.js');
-importScripts('http://www.gstatic.com/firebasejs/9.8.2/firebase-messaging-compat.js');
+importScripts('http://www.gstatic.com/firebasejs/8.10.0/firebase-app.js');
+importScripts('http://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js');
 
 // Initialize the Firebase app in the service worker by passing in
 // your app's Firebase config object.
