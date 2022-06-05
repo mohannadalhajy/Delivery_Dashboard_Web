@@ -17,9 +17,11 @@ const initState = {
   count: 0,
   selectedCount: 0,
   error: "",
-  enabled: true
+  enabled: true,
+  notification: false
 };
-
+let audio = new Audio(`${process.env.PUBLIC_URL + '/audio.mp3'}`)
+    
 const OrderReducer = (state = initState, action) => {
   switch (action.type) {
     case FETCH_GET_ALL_ORDERS_REQUEST: {
@@ -43,6 +45,9 @@ const OrderReducer = (state = initState, action) => {
       };
     }
     case FETCH_GET_ALL_ORDERS_SUCCESS: {
+      const notification = state.count !== action.payload.count
+      if (notification) audio.play()
+      else audio.pause()
       return {
         loading: false,
         orders: action.payload.orders,
@@ -50,7 +55,8 @@ const OrderReducer = (state = initState, action) => {
         count: action.payload.count,
         selectedCount: 0,
         error: "",
-        enabled: state.enabled
+        enabled: state.enabled,
+        notification: notification
       };
     }
     case FETCH_GET_ALL_ORDERS_FAILURE: {

@@ -51,7 +51,6 @@ export const getOrders = body => async (dispatch, getState) => {
     if (!body.page || body.page <= 0) body.page = 1
     if (!body.take || body.take <= 0) body.take = 50
     const promise = API.getByPage(body.page,body.take, body.type);
-
     promise.then((response) => {
         const orders = response.data.result.result.map(item => {return { ...item, checked: false }});
         dispatch(getOrdersSuccessAction({...response.data.result,orders:orders}));
