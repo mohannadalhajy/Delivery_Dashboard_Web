@@ -38,12 +38,6 @@ import {
 import { getClients } from './redux/clients/Actions';
 import messaging from "./FirebaseConf";
 
-messaging.onMessage(payload=>{
-  console.log("Notification\n",payload)
-  let audio = new Audio(`${process.env.PUBLIC_URL + '/audio.mkv'}`)
-
-    audio.play()
-})
 
 const login = loadable(() => import('./components/profile/login'));
 const clients = loadable(() => import('./components/clients'));
@@ -94,6 +88,13 @@ function App() {
   const mql = window.matchMedia(`(min-width: 800px)`);
   const [collapsed, setCollapsed] = useState(false);
   useEffect(() => {
+
+messaging.onMessage(payload=>{
+  console.log("Notification\n",payload)
+  let audio = new Audio(`${process.env.PUBLIC_URL + '/audio.mkv'}`)
+
+    audio.play()
+})
     (async () => {
       let accessToken = localStorage.getItem("accessToken");
       if (accessToken) {
