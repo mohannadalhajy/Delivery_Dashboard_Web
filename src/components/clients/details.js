@@ -18,7 +18,6 @@ import ListOrders from '../orders/list';
 import BasicPagination from '../Base/BasicPagination';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOrdersSuccessAction } from '../../redux/orders/Actions';
 import { getChargesSuccessAction } from '../../redux/charges/Actions';
 import ListCharges from '../charges/list';
 //import Orders from '../orders';
@@ -76,7 +75,7 @@ function ClientDetails() {
   const [srcImage, setSrcImage] = useState(process.env.PUBLIC_URL + '/assets/profile.webp');
   const location = useLocation();
   const [expand, setExpand] = React.useState(false);
-  const orders = useSelector(state => state.Orders);
+  const [orders, setOrders] = useState({})
   const charges = useSelector(state => state.Charges);
   const [viewOrders, setViewOrders] = React.useState(false);
   const [viewCharges, setViewCharges] = React.useState(false);
@@ -101,7 +100,7 @@ function ClientDetails() {
     const ordersPromise = APIClient.getOrders(id, 1, countInPage)
     ordersPromise.then(response => {
       const orders = response.data.result.result.map(item => { return { ...item, checked: false } });
-      dispatch(getOrdersSuccessAction({ ...response.data.result, orders: orders }));
+      setOrders({ ...response.data.result, orders: orders })
     })
     const chargesPromise = APIClient.getCharges(id, 1, countInPage)
     chargesPromise.then(response => {
@@ -114,7 +113,7 @@ function ClientDetails() {
     const ordersPromise = APIClient.getOrders(id, page, take)
     ordersPromise.then(response => {
       const orders = response.data.result.result.map(item => { return { ...item, checked: false } });
-      dispatch(getOrdersSuccessAction({ ...response.data.result, orders: orders }));
+      setOrders({ ...response.data.result, orders: orders })
     })
     setCurrPage(page)
   }
@@ -214,12 +213,18 @@ function ClientDetails() {
           </div>
         </Grid>
         <Grid item xs={6}>
-          <Button onClick={() => setViewOrders(!viewOrders)} startIcon={<FactCheckIcon />} className={classes.button1}>
+          <Button onClick={() => {
+            setViewOrders(!viewOrders)
+            setViewCharges(false)
+            }} startIcon={<FactCheckIcon />} className={classes.button1}>
             View orders
           </Button>
         </Grid>
         <Grid item xs={6}>
-          <Button onClick={() => setViewCharges(!viewCharges)} startIcon={<FactCheckIcon />} className={classes.button1}>
+          <Button onClick={() => {
+            setViewCharges(!viewCharges)
+            setViewOrders(false)
+            }} startIcon={<FactCheckIcon />} className={classes.button1}>
             View charges
           </Button>
         </Grid>
@@ -235,7 +240,7 @@ function ClientDetails() {
                 <div>There is not orders</div>
                 :
                 <React.Fragment>
-                  <ListOrders clientOrders={true} />
+                  <ListOrders clientOrders={orders} />
                   <br />
                   <BasicPagination
                     count={orders.pageCount}

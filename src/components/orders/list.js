@@ -292,16 +292,17 @@ function ListOrders({ clientOrders }) {
                 <TableCell align="left">Emirate</TableCell>
                 <TableCell align="left">Status</TableCell>
                 <TableCell align="left">Period</TableCell>
+                <TableCell align="left">Start date</TableCell>
                 <TableCell align="left" size='small'></TableCell>
                 <TableCell align="right" size='small'></TableCell>
               </TableRow>
             }
             <TableRow classes={{ root: classes.countRow }}>
-              Orders<span>({Orders.count})</span>
+              Orders<span>({clientOrders?clientOrders.count:Orders.count})</span>
             </TableRow>
           </TableHead>
           <TableBody>
-            {Orders.orders.map((item, index) => (
+            {(clientOrders?clientOrders.orders:Orders.orders).map((item, index) => (
               <TableRow
                 role="checkbox"
                 hover
@@ -366,7 +367,13 @@ function ListOrders({ clientOrders }) {
                   align="left"
                   component={Link}
                   to={getDetailsRoute(item.id)}>
-                  {item.period} min</TableCell>
+                  {item.period?item.period+ "min":""}</TableCell>
+                <TableCell
+                  className={classes.tableCell}
+                  align="left"
+                  component={Link}
+                  to={getDetailsRoute(item.id)}>
+                  {item.startDate?item.startDate.split('-')[2].split('T')[0]+"/"+item.startDate.split('-')[1]:""}</TableCell>
                 <TableCell align="left" size='small' class="actions">
                   <IconButton
                     size="small"
@@ -448,7 +455,7 @@ function ListOrders({ clientOrders }) {
                     required
                     value={driverId}
                     name="driverId"
-                    defaultChecked={Orders.orders[ItemId].driverId}
+                    defaultChecked={(clientOrders?clientOrders:Orders).orders[ItemId].driverId}
                     onChange={e => setDriverId(e.target.value)}
                     label="Driver name">
                     {drivers.map(driver => (
@@ -479,8 +486,8 @@ function ListOrders({ clientOrders }) {
           <Button
             onClick={() => {
               dispatch(editOrderDriver({
-                "id": Orders.orders[ItemId].id,
-                "body": { id: Orders.orders[ItemId].id, driverId }
+                "id": (clientOrders?clientOrders:Orders).orders[ItemId].id,
+                "body": { id: (clientOrders?clientOrders:Orders).orders[ItemId].id, driverId }
               }));
             }}
             color="primary" autoFocus>

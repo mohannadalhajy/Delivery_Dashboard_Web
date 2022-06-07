@@ -15,11 +15,11 @@ function BasicPagination ({count, page, setPage, take}) {
     const classes = useStyles();
     return (
       <div className={classes.pagination}>
-      <Pagination showFirstButton showLastButton count={count} page={page} color="primary"
+      {count&&count>1?<Pagination showFirstButton showLastButton count={count} page={page} color="primary"
       onChange={(event,val)=> {
         setPage(val,undefined)
       }} 
-      />
+      />:<div></div>}
       </div>
     );
 }
