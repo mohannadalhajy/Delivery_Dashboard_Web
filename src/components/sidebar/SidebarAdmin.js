@@ -15,7 +15,8 @@ import {
   ADD_DRIVER_ACCOUNT_ROUTE,
   DRIVERS_ACCOUNTS_ROUTE,
   MAPS_ROUTE,
-  ADD_DRIVER_ROUTE
+  ADD_DRIVER_ROUTE,
+  DAILY_ORDERS_ROUTE
 } from '../../constants/index';
 import {
   Menu,
@@ -96,6 +97,18 @@ export default function SideBarContent({ classes }) {
             <BusinessIcon />
           </IconButton>
           Clients {Clients.count}
+        </MenuItem>
+      </Link>
+      <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={DAILY_ORDERS_ROUTE}>
+        <MenuItem className={location.pathname === DAILY_ORDERS_ROUTE ? classes.clientsLink : ""}>
+          <IconButton
+            edge="start"
+            aria-label="menu"
+            className={classes.icon}
+          >
+            <FactCheckIcon />
+          </IconButton>
+          Daily Orders
         </MenuItem>
       </Link>
       <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ORDERS_ROUTE}>

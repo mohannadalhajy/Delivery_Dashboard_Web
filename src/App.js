@@ -115,7 +115,8 @@ function App() {
     setCollapsed(!collapsed)
   }
   const setOrders = () => {
-    let myInterval = setInterval(() => {
+      dispatch(getDailyOrders({}));
+      let myInterval = setInterval(() => {
       dispatch(getDailyOrders({}));
     }, 7 * 1000)
     return () => {
