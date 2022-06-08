@@ -7,6 +7,7 @@ import chargesReducer from '../redux/charges/Reducer';
 import driversReducer from '../redux/drivers/Reducer';
 import clientsAccountsReducer from '../redux/clientsAccounts/Reducer';
 import driversAccountsReducer from '../redux/driversAccounts/Reducer';
+import DailyOrderReducer from '../redux/DailyOrders/Reducer';
 // import vehiclesReducer from '../redux/vehicles/Reducer';
 
 const allReducers = combineReducers({
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
    Drivers : driversReducer,
    // Vehicles : vehiclesReducer,
    Orders : ordersReducer,
+   DailyOrders : DailyOrderReducer,
    Customers : CustomersReducer,
    Charges: chargesReducer,
    DriversAccounts: driversAccountsReducer,

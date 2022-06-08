@@ -4,9 +4,7 @@ import {
   selectOrder,
   SelectAll,
   deleteOrder,
-  editOrderDriver,
-  enableOrders,
-  disableOrders
+  editOrderDriver
 } from '../../redux/orders/Actions';
 import {
   makeStyles,
@@ -140,7 +138,7 @@ const encode = (string) => {
     number += string.charCodeAt(i);
   return number;
 }
-function ListOrders({ clientOrders }) {
+function ListOrders({ clientOrders, daily }) {
   const dispatch = useDispatch();
   const [ItemId, setItemId] = useState("");
   const [openDelete, setOpenDelete] = useState(false);
@@ -201,7 +199,6 @@ function ListOrders({ clientOrders }) {
 
   const handleChooseDriver = () => {
     setChooseDriver(true);
-    dispatch(disableOrders())
     const promiseDrivers = APIDriver.getNames(ItemId)
     setWaitingDriver(true)
     promiseDrivers.then((response) => {
@@ -216,7 +213,6 @@ function ListOrders({ clientOrders }) {
 
   const handleCloseChooseDriver = () => {
     setChooseDriver(false);
-    dispatch(enableOrders())
   };
   const toggleSelectALL = (checkType) => {
     dispatch(SelectAll(checkType))
@@ -237,7 +233,7 @@ function ListOrders({ clientOrders }) {
 
       <Menu
         id="simple-menu2"
-        anchorEl={Orders.selectedCount !== 0 ? actions : handleCloseActions}
+        anchorEl={(clientOrders?clientOrders.selectedCount:Orders?Orders.selectedCount:0) !== 0 ? actions : handleCloseActions}
         keepMounted
         open={Boolean(actions)}
         onClose={handleCloseActions}>
@@ -247,10 +243,10 @@ function ListOrders({ clientOrders }) {
       <TableContainer>
         <Table>
           <TableHead>
-            {Orders.selectedCount !== 0 ?
+            {(clientOrders?clientOrders.selectedCount:Orders?Orders.selectedCount:0) !== 0 ?
               <TableRow role="checkbox">
                 <TableCell size='small'>
-                  {Orders.selectedCount === Orders.orders.length ?
+                  {(clientOrders?clientOrders.selectedCount:Orders?Orders.selectedCount:0) === (clientOrders?clientOrders.orders.length:Orders?Orders.orders.length:0) ?
                     <IconButton
                       className={classes.checkBox}
                       onClick={() => toggleSelectALL(false)}>
@@ -275,18 +271,21 @@ function ListOrders({ clientOrders }) {
                     <Tooltip title="More Actions">
                       <MoreVertIcon />
                     </Tooltip>
-                  </IconButton></TableCell>
+                  </IconButton>
+                </TableCell>
                 <TableCell align="left" size='small'></TableCell>
                 <TableCell align="left" size='small'></TableCell>
                 <TableCell align="left" size='small'></TableCell>
-                <TableCell className={classes.selectedCell}>{Orders.selectedCount + " selected"}</TableCell>
+                <TableCell className={classes.selectedCell}>
+                  {(clientOrders?clientOrders.selectedCount:Orders?Orders.selectedCount:0) + " selected"}
+                </TableCell>
                 <TableCell align="left" size='small'></TableCell>
               </TableRow>
               :
               <TableRow role="checkbox">
                 <TableCell size='small' padding='checkbox'>
                 </TableCell>
-                {!clientOrders ? <TableCell align="left">Company name</TableCell> : <React.Fragment />}
+                {!clientOrders || daily ? <TableCell align="left">Company name</TableCell> : <React.Fragment />}
                 <TableCell align="left">Driver name</TableCell>
                 <TableCell align="left">Points</TableCell>
                 <TableCell align="left">Emirate</TableCell>
@@ -298,11 +297,11 @@ function ListOrders({ clientOrders }) {
               </TableRow>
             }
             <TableRow classes={{ root: classes.countRow }}>
-              Orders<span>({clientOrders?clientOrders.count:Orders.count})</span>
+              Orders<span>({(clientOrders?clientOrders.count:Orders?Orders.count:0)})</span>
             </TableRow>
           </TableHead>
           <TableBody>
-            {(clientOrders?clientOrders.orders:Orders.orders).map((item, index) => (
+            {(clientOrders?clientOrders.orders:Orders?Orders.orders:[]).map((item, index) => (
               <TableRow
                 role="checkbox"
                 hover
@@ -324,7 +323,7 @@ function ListOrders({ clientOrders }) {
                   <Avatar className={colors[(item.companyNameEnglish ? encode(item.companyNameEnglish) : item.emirate !== undefined ? encode(item.emirate) : 0) % colors.length]}>{item.id}</Avatar>
                 </TableCell>
 
-                {!clientOrders ? <TableCell
+                {!clientOrders||daily ? <TableCell
                   align="left"
                   className={classes.tableCell}
                   component={Link}
@@ -455,7 +454,7 @@ function ListOrders({ clientOrders }) {
                     required
                     value={driverId}
                     name="driverId"
-                    defaultChecked={(clientOrders?clientOrders:Orders).orders[ItemId].driverId}
+                    defaultChecked={(clientOrders?clientOrders.orders[ItemId].driverId:Orders?Orders.orders[ItemId].driverId:-1)}
                     onChange={e => setDriverId(e.target.value)}
                     label="Driver name">
                     {drivers.map(driver => (
@@ -486,8 +485,8 @@ function ListOrders({ clientOrders }) {
           <Button
             onClick={() => {
               dispatch(editOrderDriver({
-                "id": (clientOrders?clientOrders:Orders).orders[ItemId].id,
-                "body": { id: (clientOrders?clientOrders:Orders).orders[ItemId].id, driverId }
+                "id": (clientOrders?clientOrders.orders[ItemId].id:Orders?Orders.orders[ItemId].id:-1),
+                "body": { id: (clientOrders?clientOrders.orders[ItemId].id:Orders?Orders.orders[ItemId].id:-1), driverId }
               }));
             }}
             color="primary" autoFocus>

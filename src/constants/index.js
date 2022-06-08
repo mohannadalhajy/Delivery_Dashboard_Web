@@ -34,6 +34,7 @@ export const IMAGES_CUSTOMERS_API_URL = BASEURL+'/customersImages';
 
 ////Orders
 export const ORDERS_API_URL = BASEURL+'/orders'
+export const DAILY_ORDERS_API_URL = ORDERS_API_URL+'/daily';
 export const DELETE_ALL_ORDERS_API_URL = ORDERS_API_URL+'/deleteAll';
 export const EDIT_ORDER_DRIVER_API_URL = ORDERS_API_URL+'/driver';
 export const DELETE_ORDERS_API_URL = ORDERS_API_URL+'/deleteGroup';
@@ -81,6 +82,7 @@ export const EDIT_CUSTOMER_ROUTE = PREFIX + '/editCustomer';
 export const ADD_CUSTOMER_ROUTE = PREFIX + '/addCustomer';
 ////orders route
 export const ORDERS_ROUTE = PREFIX + '/orders';
+export const DAILY_ORDERS_ROUTE = PREFIX + '/dailyOrders';
 export const ORDER_DETAILS_ROUTE = PREFIX + '/orderDetails';
 export const EDIT_ORDER_ROUTE = PREFIX + '/editOrder';
 export const ADD_ORDER_ROUTE = PREFIX + '/addOrder';

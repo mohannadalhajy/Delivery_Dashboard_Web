@@ -19,6 +19,7 @@ import {
   CLIENTS_ROUTE, 
   CLIENT_DETAILS_ROUTE, 
   CUSTOMERS_ROUTE, 
+  DAILY_ORDERS_ROUTE, 
   DASHBOARD_ROUTE, 
   DRIVERS_ACCOUNTS_ROUTE, 
   DRIVERS_ROUTE, 
@@ -36,6 +37,7 @@ import {
   PREFIX_ROUTE  
 } from './constants';
 import { getClients } from './redux/clients/Actions';
+import { getDailyOrders } from './redux/DailyOrders/Actions';
 // import messaging from "./FirebaseConf";
 
 // messaging.onMessage(payload=>{
@@ -50,6 +52,7 @@ const clientDetails = loadable(() => import('./components/clients/details'));
 const editClient = loadable(() => import('./components/clients/edit'));
 const addClient = loadable(() => import('./components/clients/add'));
 const orders = loadable(() => import('./components/orders'));
+const dailyOrders = loadable(() => import('./components/orders/daily'));
 const orderDetails = loadable(() => import('./components/orders/details'));
 const editOrder = loadable(() => import('./components/orders/edit'));
 const addOrder = loadable(() => import('./components/orders/add'));
@@ -100,6 +103,7 @@ function App() {
           dispatch(profileMe);
           dispatch(getClients({}));
           console.log("done")
+          setOrders()
         } catch (error) {
           console.log("failed")
         }
@@ -109,6 +113,14 @@ function App() {
   }, [dispatch]);
   const handle = () => {
     setCollapsed(!collapsed)
+  }
+  const setOrders = () => {
+    let myInterval = setInterval(() => {
+      dispatch(getDailyOrders({}));
+    }, 7 * 1000)
+    return () => {
+      clearInterval(myInterval);
+    };
   }
   return (
     <div>
@@ -137,6 +149,7 @@ function App() {
                 <AuthRoute path={EDIT_ORDER_ROUTE} component={editOrder} />
                 <AuthRoute path={ORDER_DETAILS_ROUTE} component={orderDetails} />
                 <AuthRoute path={ORDERS_ROUTE} component={orders} />
+                <AuthRoute path={DAILY_ORDERS_ROUTE} component={dailyOrders} />
 
                 <AuthRoute path={CLIENTS_ACCOUNTS_ROUTE} component={clientsAccounts} />
                 <AuthRoute path={EDIT_CLIENT_ACCOUNT_ROUTE} component={editClientAccount} />

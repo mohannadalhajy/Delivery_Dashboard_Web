@@ -50,12 +50,6 @@ const Orders = () => {
     dispatch(getOrders({ page, take, type: ordersType }));
     setCurrPage(page);
     setCountInPage(take);
-    let myInterval = setInterval(() => {
-    dispatch(getOrders({ page, take, type: ordersType }));
-      }, 8 * 1000)
-      return () => {
-        clearInterval(myInterval);
-      };
   }
   useEffect(() => {
     setOrders()
@@ -106,11 +100,6 @@ const Orders = () => {
                   setPage={setOrdersByPage} />
               </React.Fragment>
         }
-        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_ORDER_ROUTE}>
-          <Button startIcon={<AddIcon />} className={classes.button1}>
-            Add order
-          </Button>
-        </Link>
       </div>
     </div>
   );

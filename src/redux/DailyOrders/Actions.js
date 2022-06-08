@@ -1,27 +1,25 @@
 import {
-    FETCH_GET_ALL_ORDERS_REQUEST,
-    FETCH_GET_ALL_ORDERS_SUCCESS,
-    FETCH_GET_ALL_ORDERS_FAILURE,
+    FETCH_GET_DAILY_ORDERS_REQUEST,
+    FETCH_GET_DAILY_ORDERS_SUCCESS,
+    FETCH_GET_DAILY_ORDERS_FAILURE,
     FETCH_ADD_ORDER_FAILURE,
     FETCH_ADD_ORDER,
     FETCH_EDIT_ORDER,
     FETCH_INIT_EDIT_ORDER,
-    FETCH_DELETE_ALL_ORDERS_SUCCESS,
-    FETCH_ENABLE_ORDERS,
-    FETCH_DISABLE_ORDERS
+    FETCH_DELETE_ALL_ORDERS_SUCCESS
 } from './ActionTypes'
 import getErrorMessage from "../../Errors";
 const API = require ('./API');
 
 export const getOrdersRequestAction = () => {
     return {
-      type: FETCH_GET_ALL_ORDERS_REQUEST,
+      type: FETCH_GET_DAILY_ORDERS_REQUEST,
     };
 };
 
 export const getOrdersSuccessAction = (result) => {
 return {
-    type: FETCH_GET_ALL_ORDERS_SUCCESS,
+    type: FETCH_GET_DAILY_ORDERS_SUCCESS,
     payload: result,
 };
 };
@@ -35,7 +33,7 @@ export const deleteAllOrdersSuccessAction = (result) => {
 
 export const getOrdersFailureAction = (error) => {
     return {
-        type: FETCH_GET_ALL_ORDERS_FAILURE,
+        type: FETCH_GET_DAILY_ORDERS_FAILURE,
         payload: error,
     };
 };
@@ -46,11 +44,9 @@ export const addOrderFailureAction = (error) => {
     };
 };
 
-export const getOrders = body => async (dispatch, getState) => {
+export const getDailyOrders = body => async (dispatch, getState) => {
     dispatch(getOrdersRequestAction());
-    if (!body.page || body.page <= 0) body.page = 1
-    if (!body.take || body.take <= 0) body.take = 50
-    const promise = API.getByPage(body.page,body.take, body.type);
+    const promise = API.get();
     promise.then((response) => {
         const orders = response.data.result.result.map(item => {return { ...item, checked: false }});
         dispatch(getOrdersSuccessAction({...response.data.result,orders:orders}));

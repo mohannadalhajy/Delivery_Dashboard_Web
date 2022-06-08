@@ -1,7 +1,7 @@
 import {
-  FETCH_GET_ALL_ORDERS_REQUEST,
-  FETCH_GET_ALL_ORDERS_SUCCESS,
-  FETCH_GET_ALL_ORDERS_FAILURE,
+  FETCH_GET_DAILY_ORDERS_REQUEST,
+  FETCH_GET_DAILY_ORDERS_SUCCESS,
+  FETCH_GET_DAILY_ORDERS_FAILURE,
   FETCH_ADD_ORDER,
   FETCH_EDIT_ORDER,
   FETCH_ADD_ORDER_FAILURE,
@@ -14,30 +14,34 @@ const initState = {
   pageCount: 1,
   count: 0,
   selectedCount: 0,
-  error: ""
+  error: "",
+  notification: false
 };
 let audio = new Audio(`${process.env.PUBLIC_URL + '/audio.mp3'}`)
     
-const OrderReducer = (state = initState, action) => {
+const DailyOrderReducer = (state = initState, action) => {
   switch (action.type) {
-    case FETCH_GET_ALL_ORDERS_REQUEST: {
+    case FETCH_GET_DAILY_ORDERS_REQUEST: {
       return {
         ...state,
-        loading: true,
+        loading: false,
         error: "",
       };
     }
-    case FETCH_GET_ALL_ORDERS_SUCCESS: {
+    case FETCH_GET_DAILY_ORDERS_SUCCESS: {
+      const notification = state.count!==0 && state.count !== action.payload.count
+      if (notification) audio.play()
+      else audio.pause()
       return {
         loading: false,
         orders: action.payload.orders,
         pageCount: action.payload.pageCount,
         count: action.payload.count,
         selectedCount: 0,
-        error: ""
+        error: "",
       };
     }
-    case FETCH_GET_ALL_ORDERS_FAILURE: {
+    case FETCH_GET_DAILY_ORDERS_FAILURE: {
       return {
         orders: [],
         error: action.payload,
@@ -105,4 +109,4 @@ const OrderReducer = (state = initState, action) => {
     default: return state;
   }
 }
-export default OrderReducer;
+export default DailyOrderReducer;
