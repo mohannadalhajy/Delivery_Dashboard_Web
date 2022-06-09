@@ -121,7 +121,7 @@ export const VEHICLES_TRANSACTIONS_ROUTE = PREFIX + '/vehiclesTransactions'
 
 ///auth route
 export const RESET_PASSWORD_ROUTE = PREFIX + '/resetPass';
-export const RESET_EMAIL_ROUTE = PREFIX + '/resetEmail';
+export const RESET_EMAIL_ROUTE = PREFIX + '/resetUserName';
 export const LOGIN_ROUTE = PREFIX + '/login';
 export const PROFILE_ROUTE = PREFIX + '/profile';
 export const ADD_USER_ROUTE = PREFIX + '/addUser';

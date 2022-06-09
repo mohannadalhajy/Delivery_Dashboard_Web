@@ -34,7 +34,9 @@ import {
   MAPS_ROUTE, 
   ORDERS_ROUTE, 
   ORDER_DETAILS_ROUTE, 
-  PREFIX_ROUTE  
+  PREFIX_ROUTE,  
+  PROFILE_ROUTE,
+  RESET_PASSWORD_ROUTE
 } from './constants';
 import { getClients } from './redux/clients/Actions';
 import { getDailyOrders } from './redux/DailyOrders/Actions';
@@ -72,6 +74,8 @@ const addCustomer = loadable(() => import('./components/customers/add'));
 const driverDetails = loadable(() => import('./components/drivers/details'));
 const editDriver = loadable(() => import('./components/drivers/edit'));
 const addDriver = loadable(() => import('./components/drivers/add'));
+const profile = loadable(() => import('./components/profile/profile'));
+const resetPass = loadable(() => import('./components/profile/resetPass'));
 // const vehicles = loadable(() => import('./components/vehicles'));
 // const vehicleDetails = loadable(() => import('./components/vehicles/details'));
 // const editVehicle = loadable(() => import('./components/vehicles/edit'));
@@ -179,7 +183,9 @@ function App() {
                 <AuthRoute path={CUSTOMERS_ROUTE} component={customers} />
                 <AuthRoute path={ADD_CUSTOMER_ROUTE} component={addCustomer} />
 
-               
+                <AuthRoute path={PROFILE_ROUTE} component={profile} />
+                <AuthRoute path={RESET_PASSWORD_ROUTE} component={resetPass} />
+
                 <AuthRoute path={ADD_CLIENT_ROUTE} component={addClient} />
                 <AuthRoute path={EDIT_CLIENT_ROUTE} component={editClient} />
                 <AuthRoute path={CLIENT_DETAILS_ROUTE} component={clientDetails} />

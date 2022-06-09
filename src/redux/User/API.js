@@ -25,6 +25,6 @@ export const editEmail= async(body)=>
 }
 export const resetPass= async(body)=>
 {
-    const data = client.putWithoutId(UPDATE_PASSWORD_API_URL,body);
+    const data = client.post(UPDATE_PASSWORD_API_URL,body);
     return data;
 }
