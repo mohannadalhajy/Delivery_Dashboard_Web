@@ -186,8 +186,20 @@ function ClientDetails() {
               {client.amount && expand ?
                 <div className={classes.labelDetails}><br />Amount: {client.amount}</div>
                 : <div></div>}
+              {client.ordersAmount && expand ?
+                <div className={classes.labelDetails}><br />Orders amount: {client.ordersAmount}</div>
+                : <div></div>}
+              {client.deliveredAmount && expand ?
+                <div className={classes.labelDetails}><br />Delivered amount: {client.deliveredAmount}</div>
+                : <div></div>}
               {client.points && expand ?
                 <div className={classes.labelDetails}><br />Points: {client.points}</div>
+                : <div></div>}
+              {client.allPoints && expand ?
+                <div className={classes.labelDetails}><br />Charged points: {client.allPoints}</div>
+                : <div></div>}
+              {client.allPointsConsumed && expand ?
+                <div className={classes.labelDetails}><br />Consumed points: {client.allPointsConsumed}</div>
                 : <div></div>}
               {client.companyTypeEnglish && expand ?
                 <div className={classes.labelDetails}><br />Company type: {client.companyTypeEnglish}</div>
@@ -216,7 +228,7 @@ function ClientDetails() {
           <Button onClick={() => {
             setViewOrders(!viewOrders)
             setViewCharges(false)
-            }} startIcon={<FactCheckIcon />} className={classes.button1}>
+          }} startIcon={<FactCheckIcon />} className={classes.button1}>
             View orders
           </Button>
         </Grid>
@@ -224,7 +236,7 @@ function ClientDetails() {
           <Button onClick={() => {
             setViewCharges(!viewCharges)
             setViewOrders(false)
-            }} startIcon={<FactCheckIcon />} className={classes.button1}>
+          }} startIcon={<FactCheckIcon />} className={classes.button1}>
             View charges
           </Button>
         </Grid>
