@@ -1,9 +1,6 @@
 import React, { } from 'react';
-import { Link, useLocation } from "react-router-dom";
-import { Button, CircularProgress, makeStyles } from '@material-ui/core';
+import { CircularProgress, makeStyles } from '@material-ui/core';
 import ListOrders from './list';
-import AddIcon from '@material-ui/icons/Add';
-import { ADD_ORDER_ROUTE } from '../../constants';
 import { useSelector } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
   CircularProgress: {
@@ -49,11 +46,6 @@ const DailyOrders = () => {
                 <br />
               </React.Fragment>
         }
-        <Link style={{ color: 'inherit', textDecoration: 'inherit' }} to={ADD_ORDER_ROUTE}>
-          <Button startIcon={<AddIcon />} className={classes.button1}>
-            Add order
-          </Button>
-        </Link>
       </div>
     </div>
   );

@@ -29,9 +29,9 @@ const DailyOrderReducer = (state = initState, action) => {
       };
     }
     case FETCH_GET_DAILY_ORDERS_SUCCESS: {
-      const notification = state.count!==0 && state.count !== action.payload.count
-      if (notification) audio.play()
-      else audio.pause()
+      const notification = state.count !== action.payload.count
+      // if (notification) audio.play()
+      // else audio.pause()
       return {
         loading: false,
         orders: action.payload.orders,
@@ -39,6 +39,7 @@ const DailyOrderReducer = (state = initState, action) => {
         count: action.payload.count,
         selectedCount: 0,
         error: "",
+        notification//: !state.notification
       };
     }
     case FETCH_GET_DAILY_ORDERS_FAILURE: {

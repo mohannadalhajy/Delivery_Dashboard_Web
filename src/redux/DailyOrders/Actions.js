@@ -45,7 +45,7 @@ export const addOrderFailureAction = (error) => {
 };
 
 export const getDailyOrders = body => async (dispatch, getState) => {
-    dispatch(getOrdersRequestAction());
+    // dispatch(getOrdersRequestAction());
     const promise = API.get();
     promise.then((response) => {
         const orders = response.data.result.result.map(item => {return { ...item, checked: false }});
