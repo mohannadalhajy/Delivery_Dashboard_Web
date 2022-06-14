@@ -81,20 +81,22 @@ function EditClient() {
   //const [existFields,setExistFields] = useState([])
   const [isDisabled, setIsDisabled] = useState(true)
   const [recordState, setRecordState] = useState({});
-  const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
+  // const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
   const [zoom, setZoom] = useState(DefaultZoom);
   const [mapLocation, setMapLocation] = useState(DefaultLocation);
 
   const handleChangeLocation = (latitude, longitude) => {
-    setMapLocation({ latitude, longitude });
+    setMapLocation({ lat:latitude, lng:longitude });
+    setIsDisabled(false)
   }
 
   const handleChangeZoom = (newZoom) => {
     setZoom(newZoom);
   }
   const handleResetLocation = () => {
-    setDefaultLocation({ ...DefaultLocation });
+    setMapLocation({ ...DefaultLocation });
     setZoom(DefaultZoom);
+    setIsDisabled(false)
   }
   useEffect(() => {
     var str = location.search;
@@ -102,7 +104,7 @@ function EditClient() {
     const promise = APIClient.getById(id);
     promise.then(res => {
       setRecordState(res.data.result)
-      setMapLocation({ latitude:res.data.result.latitude, longitude: res.data.result.longitude })
+      setMapLocation({ lat:res.data.result.latitude, lng: res.data.result.longitude })
       setLoading(false)
     }).catch(
       err => {
@@ -132,7 +134,7 @@ function EditClient() {
     var pos = str.substring(1);
     dispatch(editClient({
       "id": pos,
-      "body": {...recordState, latitude: mapLocation.latitude, longitude: mapLocation.longitude }
+      "body": {...recordState, latitude: mapLocation.lat, longitude: mapLocation.lng }
     }));
   }
 
@@ -398,18 +400,18 @@ function EditClient() {
                 </Grid>
               </Grid>
               <br />
-              <button onClick={handleResetLocation}>Reset Location</button>
-              <MapPicker defaultLocation={defaultLocation}
+
+              <br />
+              <br />
+            </form>
+            <button onClick={handleResetLocation}>Reset Location</button>
+              <MapPicker defaultLocation={mapLocation}
                 zoom={zoom}
                 mapTypeId="roadmap"
                 style={{ height: '700px' }}
                 onChangeLocation={handleChangeLocation}
                 onChangeZoom={handleChangeZoom}
                 apiKey='AIzaSyDVFvurJK6PyxOgj9jS54HDa6lvSbUlJfI' />
-
-              <br />
-              <br />
-            </form>
 
           </Grid>
         </Grid>
