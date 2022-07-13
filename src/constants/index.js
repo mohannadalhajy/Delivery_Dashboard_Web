@@ -129,8 +129,8 @@ export const EDIT_USER_ROUTE = PREFIX + '/editUser';
 //Dashboard route
 export const DASHBOARD_ROUTE = PREFIX + '/dashboard'
 ////Cities
-export const EMIRATES = ["AJM","SHJ", "DUBAI", "UAQ", "AD", "FUJ", "RAK", "AIN","WEST"]
-export const ORDER_EMIRATES = ["AJM", "SHJ", "DUBAI", "UAQ"]
+export const EMIRATES = ["AJM","SHJ", "DUBAI", "UAQ", "Muwailih", "AD", "FUJ", "RAK", "AIN","WEST"]
+export const ORDER_EMIRATES = ["AJM", "SHJ", "DUBAI", "UAQ", "Muwailih"]
 // export const ORDER_TYPES = ["Internal","External","LPO"]
 export const TRANSPORT_TYPES = ["Motor","Car"]
 export const VEHICLES_SERVICE_TYPES = ["Owning","Rent"]
