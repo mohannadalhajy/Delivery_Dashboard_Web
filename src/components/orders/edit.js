@@ -13,7 +13,7 @@ import {
 import MuiAlert from '@material-ui/lab/Alert';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_CUSTOMER_ROUTE, ORDER_DETAILS_ROUTE, ORDER_EMIRATES, ORDER_STATUS_TYPES, TRANSPORT_TYPES } from '../../constants/index';
+import { ADD_CUSTOMER_ROUTE, ORDER_DETAILS_ROUTE, ORDER_EMIRATES, ORDER_EMIRATES_TEMP, ORDER_STATUS_TYPES, TRANSPORT_TYPES } from '../../constants/index';
 import { editOrder, initEditOrder } from '../../redux/orders/Actions';
 import BaseWaiting from '../Base/BaseWaiting';
 import 'react-phone-number-input/style.css'
@@ -133,7 +133,8 @@ function EditOrder() {
   // };
   const handleChangeEmirate = (e) => {
     const emirate = e.target.value
-    setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 2 ? 1 : 0 });
+    setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 3 ? 1 : 0 });
+    // setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 2 ? 1 : 0 });
     setIsDisabled(false)
   };
   const EditClick = (e) => {
@@ -284,7 +285,7 @@ function EditOrder() {
                   </FormControl>
                 </Grid> */}
                 <Grid item xs={12} sm={5}>
-                  {recordState.emirate !== undefined && recordState.emirate !== 2 ? <FormControl
+                  {recordState.emirate !== undefined && recordState.emirate !== 3 ? <FormControl
                     className={classes.TextField}
                     variant="standard" fullWidth>
                     <InputLabel id="transportType-label">Transport Type</InputLabel>
@@ -315,9 +316,9 @@ function EditOrder() {
                       labelId={recordState.emirate}
                       onChange={handleChangeEmirate}
                       label="Emirate">
-                      {ORDER_EMIRATES
+                      {ORDER_EMIRATES_TEMP
                         .map((emirate, index) => (
-                          (emirate => recordState.type && ((recordState.type === 1 && !(emirate === 0 || emirate === 2)) || (recordState.type === 0 && emirate === 0) || recordState.type === 2)) ?
+                          (emirate => recordState.type && ((recordState.type === 1 && !(emirate === 0 || emirate === 3)) || (recordState.type === 0 && emirate === 0) || recordState.type === 2)) ?
                             <MenuItem value={index} labelId={emirate}>{emirate}</MenuItem>
                             : <React.Fragment />
                         ))}

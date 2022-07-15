@@ -13,7 +13,7 @@ import {
 import MuiAlert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_CUSTOMER_ROUTE, ORDERS_ROUTE, ORDER_EMIRATES, TRANSPORT_TYPES } from '../../constants/index';
+import { ADD_CUSTOMER_ROUTE, ORDERS_ROUTE, ORDER_EMIRATES, ORDER_EMIRATES_TEMP, TRANSPORT_TYPES } from '../../constants/index';
 import { addOrder } from '../../redux/orders/Actions';
 // import BaseWaiting from '../Base/BaseWaiting';
 import 'react-phone-number-input/style.css'
@@ -113,7 +113,8 @@ function AddOrder() {
   // };
   const handleChangeEmirate = (e) => {
     const emirate = e.target.value
-    setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 2 ? 1 : 0 });
+    setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 3 ? 1 : 0 });
+    // setRecordState({ ...recordState, [e.target.name]: e.target.value, transportType: emirate === 2 ? 1 : 0 });
     //setRecordState({ ...recordState, emirate: ORDER_EMIRATES[0] });
     setIsDisabled(false)
   };
@@ -225,7 +226,7 @@ function AddOrder() {
               </Grid>
               <Grid item xs={1} />
               <Grid item xs={12} sm={5}>
-                {recordState.emirate !== undefined && recordState.emirate !== 2 ? <FormControl
+                {recordState.emirate !== undefined && recordState.emirate !== 3 ? <FormControl
                   className={classes.TextField}
                   variant="standard" fullWidth>
                   <InputLabel id="transportType-label">Transport Type</InputLabel>
@@ -256,7 +257,7 @@ function AddOrder() {
                     labelId={recordState.emirate}
                     onChange={handleChangeEmirate}
                     label="Emirate">
-                    {ORDER_EMIRATES
+                    {ORDER_EMIRATES_TEMP
                       .map((emirate, index) => (
                         // (recordState.type && 
                         //   ((recordState.type === 1 && 
